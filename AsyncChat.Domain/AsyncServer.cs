@@ -29,67 +29,102 @@ namespace AsyncChat.Domain
 
 		public void StartListening()
 		{
-			state.TcpListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+			try
+			{
+				state.TcpListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-			state.TcpListener.Bind(state.EndPoint);
-			state.TcpListener.Listen(50);
+				state.TcpListener.Bind(state.EndPoint);
+				state.TcpListener.Listen(50);
 
-			state.TcpListener.BeginAccept(new AsyncCallback(AcceptCallback), null);
+				state.TcpListener.BeginAccept(new AsyncCallback(AcceptCallback), null);
+			}
+			catch (Exception)
+			{
+				// TODO: Log exception to file and throw it
+			}
 		}
 
 		public void StopListening()
 		{
-			if (state.TcpListener != null)
+			try
 			{
-				state.TcpListener.Shutdown(SocketShutdown.Both);
-				state.TcpListener.Close();
-				state.TcpListener = null;
+				if (state.TcpListener != null)
+				{
+					state.TcpListener.Shutdown(SocketShutdown.Both);
+					state.TcpListener.Close();
+					state.TcpListener = null;
+				}
+			}
+			catch (Exception)
+			{
+				// TODO: Log exception to file and throw it
 			}
 		}
 
 		private void AcceptCallback(IAsyncResult asyncResult)
 		{
-			state.Handler = state.TcpListener.EndAccept(asyncResult);
-			var clientSocket = state.Handler;
-			if (!clients.Contains(clientSocket))
+			try
 			{
-				clients.Add(clientSocket);
+				state.Handler = state.TcpListener.EndAccept(asyncResult);
+				var clientSocket = state.Handler;
+				if (!clients.Contains(clientSocket))
+				{
+					clients.Add(clientSocket);
+				}
+				else
+				{
+					clientSocket = clients.Find(socket => socket == state.Handler);
+				}
+				clientSocket.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
+					new AsyncCallback(ReceiveCallback), clientSocket);
 			}
-			else
+			catch (Exception)
 			{
-				clientSocket = clients.Find(socket => socket == state.Handler);
+				// TODO: Log exception to file and throw it
 			}
-			clientSocket.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
-				new AsyncCallback(ReceiveCallback), clientSocket);
 		}
 
 		private void ReceiveCallback(IAsyncResult asyncResult)
 		{
-			var clientSocket = (Socket)asyncResult.AsyncState;
-
-			int bytesToRead = clientSocket.EndReceive(asyncResult);
-
-			if (bytesToRead > 0)
+			try
 			{
-				var content = Encoding.ASCII.GetString(state.Buffer, 0, bytesToRead);
+				var clientSocket = (Socket)asyncResult.AsyncState;
 
-				if (content == "disconnect")
+				int bytesToRead = clientSocket.EndReceive(asyncResult);
+
+				if (bytesToRead > 0)
 				{
-					clients.Remove(clientSocket);
-					DisconnectCurrentClient(clientSocket);
-					return;
-				}
+					var content = Encoding.ASCII.GetString(state.Buffer, 0, bytesToRead);
 
-				NotifyClients(content);
-				clientSocket.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
-					new AsyncCallback(ReceiveCallback), clientSocket);
+					if (content == "disconnect")
+					{
+						clients.Remove(clientSocket);
+						DisconnectCurrentClient(clientSocket);
+						return;
+					}
+
+					NotifyClients(content);
+					clientSocket.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
+						new AsyncCallback(ReceiveCallback), clientSocket);
+				}
+			}
+			catch (Exception)
+			{
+				// TODO: Log exception to file and throw it
 			}
 		}
 
 		private void DisconnectCurrentClient(Socket clientSocket)
 		{
-			clientSocket.Shutdown(SocketShutdown.Both);
-			clientSocket.Close();
+			try
+			{
+				clientSocket.Shutdown(SocketShutdown.Both);
+				clientSocket.Close();
+			}
+			catch (Exception)
+			{
+				// TODO: Log exception to file and throw it
+			}
 		}
 
 		private void NotifyClients(string content)
@@ -102,16 +137,30 @@ namespace AsyncChat.Domain
 
 		private void Send(Socket client, string content)
 		{
-			var bytesToSend = Encoding.ASCII.GetBytes(content);
+			try
+			{
+				var bytesToSend = Encoding.ASCII.GetBytes(content);
 
-			client.BeginSend(bytesToSend, 0, bytesToSend.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
+				client.BeginSend(bytesToSend, 0, bytesToSend.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
+			}
+			catch (Exception)
+			{
+				// TODO: Log exception to file and throw it
+			}
 		}
 
 		private void SendCallback(IAsyncResult asyncResult)
 		{
-			var client = (Socket)asyncResult.AsyncState;
+			try
+			{
+				var client = (Socket)asyncResult.AsyncState;
 
-			int bytesSent = client.EndSend(asyncResult);
+				int bytesSent = client.EndSend(asyncResult);
+			}
+			catch (Exception)
+			{
+				// TODO: Log exception to file and throw it
+			}
 		}
 	}
 }

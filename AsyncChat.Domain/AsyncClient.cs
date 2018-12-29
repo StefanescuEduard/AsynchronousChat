@@ -39,7 +39,6 @@ namespace AsyncChat.Domain
 			catch (Exception)
 			{
 				// TODO: Log exception to file and throw it
-				throw;
 			}
 		}
 
@@ -55,7 +54,6 @@ namespace AsyncChat.Domain
 			catch (Exception)
 			{
 				// TODO: Log exception to file and throw it
-				throw;
 			}
 		}
 
@@ -71,7 +69,6 @@ namespace AsyncChat.Domain
 			catch (Exception)
 			{
 				// TODO: Log exception to file and throw it
-				throw;
 			}
 		}
 
@@ -84,7 +81,6 @@ namespace AsyncChat.Domain
 			catch (Exception)
 			{
 				// TODO: Log exception to file and throw it
-				throw;
 			}
 		}
 
