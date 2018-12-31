@@ -21,7 +21,7 @@ namespace AsyncChat.Client
 		private void InitializeControls()
 		{
 			rTxtContent.BackColor = Color.White;
-			rTxtContent.Text = string.Empty;
+			txtMessage.Text = string.Empty;
 			txtIP.Enabled = true;
 			btnConnect.Enabled = true;
 			txtName.Enabled = true;

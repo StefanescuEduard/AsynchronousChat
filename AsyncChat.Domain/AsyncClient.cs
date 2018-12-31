@@ -22,8 +22,8 @@ namespace AsyncChat.Domain
 				Port = 23571,
 				BufferSize = 256
 			};
-			ipAddress = Dns.GetHostEntry(clientAddress).AddressList
-				.First(address => address.AddressFamily == AddressFamily.InterNetwork);
+			ipAddress = ipAddress = Dns.GetHostEntry(clientAddress).AddressList
+											.First(address => address.AddressFamily == AddressFamily.InterNetwork);
 			state.EndPoint = new IPEndPoint(ipAddress, state.Port);
 			state.Buffer = new byte[state.BufferSize];
 		}

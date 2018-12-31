@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -13,18 +12,26 @@ namespace AsyncChat.Domain
 		private IPAddress ipAddress;
 		private readonly List<Socket> clients;
 
+		public delegate void ClientConnected();
+		public ClientConnected ClientConnectedMethod;
+
+		public delegate void ClientDisconnected();
+		public ClientConnected ClientDisconnectedMethod;
+
 		public AsyncServer()
 		{
 			clients = new List<Socket>();
 			state = new State
 			{
-				Port = 23571,
 				BufferSize = 1024
 			};
-			ipAddress = Dns.GetHostEntry(Dns.GetHostName())
-				.AddressList.First(address => address.AddressFamily == AddressFamily.InterNetwork);
-			state.EndPoint = new IPEndPoint(ipAddress, state.Port);
 			state.Buffer = new byte[state.BufferSize];
+		}
+
+		public void SetConnectionToHost(IPAddress ipAddress, int port)
+		{
+			this.ipAddress = ipAddress;
+			state.EndPoint = new IPEndPoint(ipAddress, port);
 		}
 
 		public void StartListening()
@@ -36,7 +43,11 @@ namespace AsyncChat.Domain
 				state.TcpListener.Bind(state.EndPoint);
 				state.TcpListener.Listen(50);
 
-				state.TcpListener.BeginAccept(new AsyncCallback(AcceptCallback), null);
+
+				while (true)
+				{
+					state.TcpListener.BeginAccept(new AsyncCallback(AcceptCallback), null);
+				}
 			}
 			catch (Exception)
 			{
@@ -50,6 +61,7 @@ namespace AsyncChat.Domain
 			{
 				if (state.TcpListener != null)
 				{
+					DisconnectAllClients();
 					state.TcpListener.Shutdown(SocketShutdown.Both);
 					state.TcpListener.Close();
 					state.TcpListener = null;
@@ -75,6 +87,7 @@ namespace AsyncChat.Domain
 				{
 					clientSocket = clients.Find(socket => socket == state.Handler);
 				}
+				ClientConnectedMethod?.Invoke();
 				clientSocket.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
 					new AsyncCallback(ReceiveCallback), clientSocket);
 			}
@@ -100,6 +113,7 @@ namespace AsyncChat.Domain
 					{
 						clients.Remove(clientSocket);
 						DisconnectCurrentClient(clientSocket);
+						ClientDisconnectedMethod.Invoke();
 						return;
 					}
 
@@ -118,12 +132,21 @@ namespace AsyncChat.Domain
 		{
 			try
 			{
+				clients.Remove(clientSocket);
 				clientSocket.Shutdown(SocketShutdown.Both);
 				clientSocket.Close();
 			}
 			catch (Exception)
 			{
 				// TODO: Log exception to file and throw it
+			}
+		}
+
+		private void DisconnectAllClients()
+		{
+			foreach (var client in clients)
+			{
+				DisconnectCurrentClient(client);
 			}
 		}
 

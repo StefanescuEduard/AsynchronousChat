@@ -35,7 +35,6 @@ namespace AsyncChat.Service
 		{
 			try
 			{
-				Console.WriteLine("Server started.");
 				AsyncServer.StartListening();
 			}
 			catch (Exception exception)
@@ -49,7 +48,6 @@ namespace AsyncChat.Service
 			try
 			{
 				AsyncServer.StopListening();
-				Console.WriteLine("Server stopped.");
 			}
 			catch (Exception exception)
 			{
@@ -59,10 +57,25 @@ namespace AsyncChat.Service
 
 		public void RunAsConsole(string[] args)
 		{
-			OnStart(args);
-			Console.WriteLine("Press any key to close the AsyncChat service.");
+			Console.WriteLine("Server started.");
+			AsyncServer.ClientConnectedMethod += DisplayConnectedMessage;
+			AsyncServer.ClientDisconnectedMethod += DisplayDisconnectedMessage;
+			Console.WriteLine("Press CTRL+C to close the AsyncChat service.");
 			Console.ReadKey();
+			OnStart(args);
 			OnStop();
+			Console.WriteLine("Server stopped.");
+			Console.ReadKey();
+		}
+
+		public void DisplayConnectedMessage()
+		{
+			Console.WriteLine("Client connected.");
+		}
+
+		public void DisplayDisconnectedMessage()
+		{
+			Console.WriteLine("Client connected.");
 		}
 	}
 }
