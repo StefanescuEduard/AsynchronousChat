@@ -1,7 +1,9 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 
 namespace AsyncChat.Domain
@@ -11,6 +13,7 @@ namespace AsyncChat.Domain
 		private readonly State state;
 		private IPAddress ipAddress;
 		private readonly List<Socket> clients;
+		private readonly ILog logger;
 
 		public delegate void ClientConnected();
 		public ClientConnected ClientConnectedMethod;
@@ -20,24 +23,27 @@ namespace AsyncChat.Domain
 
 		public AsyncServer()
 		{
+			logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 			clients = new List<Socket>();
 			state = new State
 			{
+				Port = 23571,
 				BufferSize = 1024
 			};
 			state.Buffer = new byte[state.BufferSize];
 		}
 
-		public void SetConnectionToHost(IPAddress ipAddress, int port)
+		public void SetConnectionToHost(IPAddress ipAddress)
 		{
-			this.ipAddress = ipAddress;
-			state.EndPoint = new IPEndPoint(ipAddress, port);
+			state.EndPoint = new IPEndPoint(ipAddress, state.Port);
 		}
 
 		public void StartListening()
 		{
 			try
 			{
+				logger.Error("Hello", new Exception("Hello hello"));
+
 				state.TcpListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
 				state.TcpListener.Bind(state.EndPoint);
@@ -49,9 +55,9 @@ namespace AsyncChat.Domain
 					state.TcpListener.BeginAccept(new AsyncCallback(AcceptCallback), null);
 				}
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message, exception);
 			}
 		}
 
@@ -67,9 +73,9 @@ namespace AsyncChat.Domain
 					state.TcpListener = null;
 				}
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message);
 			}
 		}
 
@@ -91,9 +97,9 @@ namespace AsyncChat.Domain
 				clientSocket.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
 					new AsyncCallback(ReceiveCallback), clientSocket);
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message);
 			}
 		}
 
@@ -122,9 +128,9 @@ namespace AsyncChat.Domain
 						new AsyncCallback(ReceiveCallback), clientSocket);
 				}
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message);
 			}
 		}
 
@@ -136,9 +142,9 @@ namespace AsyncChat.Domain
 				clientSocket.Shutdown(SocketShutdown.Both);
 				clientSocket.Close();
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message);
 			}
 		}
 
@@ -166,9 +172,9 @@ namespace AsyncChat.Domain
 
 				client.BeginSend(bytesToSend, 0, bytesToSend.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message);
 			}
 		}
 
@@ -180,9 +186,9 @@ namespace AsyncChat.Domain
 
 				int bytesSent = client.EndSend(asyncResult);
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message);
 			}
 		}
 	}

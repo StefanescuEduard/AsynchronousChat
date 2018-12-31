@@ -60,9 +60,9 @@ namespace AsyncChat.Service
 			Console.WriteLine("Server started.");
 			AsyncServer.ClientConnectedMethod += DisplayConnectedMessage;
 			AsyncServer.ClientDisconnectedMethod += DisplayDisconnectedMessage;
+			OnStart(args);
 			Console.WriteLine("Press CTRL+C to close the AsyncChat service.");
 			Console.ReadKey();
-			OnStart(args);
 			OnStop();
 			Console.WriteLine("Server stopped.");
 			Console.ReadKey();

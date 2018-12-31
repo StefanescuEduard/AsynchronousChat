@@ -1,45 +1,70 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 
 namespace AsyncChat.Domain
 {
 	public class AsyncClient
 	{
-		private readonly State state;
-		private readonly IPAddress ipAddress;
+		private State state;
+		private IPAddress ipAddress;
+		private readonly ILog logger;
+
 		public delegate void ChatContentReceived();
 		public ChatContentReceived ChatContentReceivedMethod;
 
+		public delegate void ExceptionThrown(string exceptionMessage);
+		public ExceptionThrown ExceptionThrownMethod;
+
 		public string ChatContent { get; private set; }
 
-		public AsyncClient(string clientAddress)
+		public AsyncClient()
 		{
-			state = new State
-			{
-				Port = 23571,
-				BufferSize = 256
-			};
-			ipAddress = ipAddress = Dns.GetHostEntry(clientAddress).AddressList
-											.First(address => address.AddressFamily == AddressFamily.InterNetwork);
-			state.EndPoint = new IPEndPoint(ipAddress, state.Port);
-			state.Buffer = new byte[state.BufferSize];
+			logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 		}
 
-		public void Connect()
+		public void SetConnectionForClient(string clientAddress)
+		{
+			try
+			{
+				state = new State
+				{
+					Port = 23571,
+					BufferSize = 256
+				};
+				ipAddress = ipAddress = Dns.GetHostEntry(clientAddress).AddressList
+												.First(address => address.AddressFamily == AddressFamily.InterNetwork);
+				state.EndPoint = new IPEndPoint(ipAddress, state.Port);
+				state.Buffer = new byte[state.BufferSize];
+			}
+			catch (Exception exception)
+			{
+				logger.Error(exception.Message, exception);
+				ExceptionThrownMethod.Invoke(exception.Message);
+			}
+		}
+
+		public bool Connect()
 		{
 			try
 			{
 				state.TcpListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
 				state.TcpListener.BeginConnect(state.EndPoint, new AsyncCallback(ConnectCallback), null);
+
+				return true;
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message, exception);
+				ExceptionThrownMethod.Invoke(exception.Message);
 			}
+
+			return false;
 		}
 
 		public void Send(string message)
@@ -51,9 +76,10 @@ namespace AsyncChat.Domain
 				state.TcpListener.BeginSend(bytesToSend, 0, bytesToSend.Length, SocketFlags.None,
 					new AsyncCallback(SendCallback), null);
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message, exception);
+				ExceptionThrownMethod.Invoke(exception.Message);
 			}
 		}
 
@@ -66,9 +92,10 @@ namespace AsyncChat.Domain
 				state.TcpListener.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
 					new AsyncCallback(ReceiveCallback), null);
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message, exception);
+				ExceptionThrownMethod.Invoke(exception.Message);
 			}
 		}
 
@@ -78,23 +105,32 @@ namespace AsyncChat.Domain
 			{
 				state.TcpListener.EndSend(asyncResult);
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
-				// TODO: Log exception to file and throw it
+				logger.Error(exception.Message, exception);
+				ExceptionThrownMethod.Invoke(exception.Message);
 			}
 		}
 
 		private void ReceiveCallback(IAsyncResult asyncResult)
 		{
-			var bytesToRead = state.TcpListener.EndReceive(asyncResult);
-
-			if (bytesToRead > 0)
+			try
 			{
-				ChatContent = Encoding.ASCII.GetString(state.Buffer, 0, bytesToRead);
-				ChatContentReceivedMethod.Invoke();
+				var bytesToRead = state.TcpListener.EndReceive(asyncResult);
 
-				state.TcpListener.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
-						new AsyncCallback(ReceiveCallback), null);
+				if (bytesToRead > 0)
+				{
+					ChatContent = Encoding.ASCII.GetString(state.Buffer, 0, bytesToRead);
+					ChatContentReceivedMethod.Invoke();
+
+					state.TcpListener.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
+							new AsyncCallback(ReceiveCallback), null);
+				}
+			}
+			catch (Exception exception)
+			{
+				logger.Error(exception.Message, exception);
+				ExceptionThrownMethod.Invoke(exception.Message);
 			}
 		}
 	}

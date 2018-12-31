@@ -23,14 +23,14 @@ namespace AsyncChat.Service
 			if (args[0] == "console")
 			{
 				chatServer.AsyncServer.SetConnectionToHost(Dns.GetHostEntry(args[1])
-						.AddressList.First(address => address.AddressFamily == AddressFamily.InterNetwork), Convert.ToInt32(args[2]));
+						.AddressList.First(address => address.AddressFamily == AddressFamily.InterNetwork));
 				chatServer.RunAsConsole(args);
 			}
 			else
 			{
 				ServiceBase[] ServicesToRun;
 				chatServer.AsyncServer.SetConnectionToHost(Dns.GetHostEntry(Dns.GetHostName())
-					.AddressList.First(address => address.AddressFamily == AddressFamily.InterNetwork), 23571);
+					.AddressList.First(address => address.AddressFamily == AddressFamily.InterNetwork));
 				ServicesToRun = new ServiceBase[]
 				{
 					chatServer

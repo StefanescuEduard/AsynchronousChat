@@ -11,6 +11,7 @@ namespace AsyncChat.Client
 	public partial class ChatForm : Form
 	{
 		private AsyncClient asyncClient;
+		private bool exceptionThrown = false;
 
 		public ChatForm()
 		{
@@ -34,10 +35,14 @@ namespace AsyncChat.Client
 		{
 			if (!string.IsNullOrEmpty(txtIP.Text) && !string.IsNullOrEmpty(txtName.Text))
 			{
-				asyncClient = new AsyncClient(txtIP.Text);
+				asyncClient = new AsyncClient();
+				asyncClient.ExceptionThrownMethod += HandleException;
+				asyncClient.SetConnectionForClient(txtIP.Text);
+				if (exceptionThrown) return;
 				asyncClient.Connect();
 				asyncClient.ChatContentReceivedMethod += DisplayChatContent;
 				SetControlsForConnection();
+				exceptionThrown = false;
 			}
 			else
 			{
@@ -123,6 +128,13 @@ namespace AsyncChat.Client
 		{
 			rTxtContent.SelectionStart = rTxtContent.Text.Length;
 			rTxtContent.ScrollToCaret();
+		}
+
+		private void HandleException(string exceptionMessage)
+		{
+			MessageBox.Show(this, exceptionMessage, "Something bad happened", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			exceptionThrown = true;
+			InitializeControls();
 		}
 	}
 }
