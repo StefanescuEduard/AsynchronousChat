@@ -17,6 +17,11 @@ namespace AsyncChat.Client
 		{
 			InitializeComponent();
 			InitializeControls();
+
+			asyncClient = new AsyncClient();
+			asyncClient.ExceptionThrownMethod += HandleException;
+			asyncClient.ChatContentReceivedMethod += DisplayChatContent;
+			asyncClient.ConnectionIvokedMethod += HandleConnection;
 		}
 
 		private void InitializeControls()
@@ -35,12 +40,13 @@ namespace AsyncChat.Client
 		{
 			if (!string.IsNullOrEmpty(txtIP.Text) && !string.IsNullOrEmpty(txtName.Text))
 			{
-				asyncClient = new AsyncClient();
-				asyncClient.ExceptionThrownMethod += HandleException;
 				asyncClient.SetConnectionForClient(txtIP.Text);
-				if (exceptionThrown) return;
+				if (exceptionThrown)
+				{
+					exceptionThrown = !exceptionThrown;
+					return;
+				}
 				asyncClient.Connect();
-				asyncClient.ChatContentReceivedMethod += DisplayChatContent;
 				SetControlsForConnection();
 				exceptionThrown = false;
 			}
@@ -81,6 +87,7 @@ namespace AsyncChat.Client
 		private void OnDisconnectButtonClick(object sender, EventArgs e)
 		{
 			asyncClient.Send("disconnect");
+			HandleConnection(false);
 			InitializeControls();
 		}
 
@@ -135,6 +142,22 @@ namespace AsyncChat.Client
 			MessageBox.Show(this, exceptionMessage, "Something bad happened", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			exceptionThrown = true;
 			InitializeControls();
+		}
+
+		private void HandleConnection(bool connected)
+		{
+			if (connected)
+			{
+				lblConnectionStatus.Text = "Connected";
+				lblConnectionStatus.ForeColor = ColorTranslator.FromHtml("#0be881");
+				picBoxStatus.Image = Resources.power_cord_green;
+			}
+			else
+			{
+				lblConnectionStatus.Text = "Disconnected";
+				lblConnectionStatus.ForeColor = ColorTranslator.FromHtml("#ff3f34");
+				picBoxStatus.Image = Resources.power_cord_red;
+			}
 		}
 	}
 }

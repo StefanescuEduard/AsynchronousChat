@@ -15,12 +15,6 @@ namespace AsyncChat.Domain
 		private readonly List<Socket> clients;
 		private readonly ILog logger;
 
-		public delegate void ClientConnected();
-		public ClientConnected ClientConnectedMethod;
-
-		public delegate void ClientDisconnected();
-		public ClientConnected ClientDisconnectedMethod;
-
 		public AsyncServer()
 		{
 			logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -35,6 +29,7 @@ namespace AsyncChat.Domain
 
 		public void SetConnectionToHost(IPAddress ipAddress)
 		{
+			this.ipAddress = ipAddress;
 			state.EndPoint = new IPEndPoint(ipAddress, state.Port);
 		}
 
@@ -42,13 +37,10 @@ namespace AsyncChat.Domain
 		{
 			try
 			{
-				logger.Error("Hello", new Exception("Hello hello"));
-
 				state.TcpListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
 				state.TcpListener.Bind(state.EndPoint);
 				state.TcpListener.Listen(50);
-
 
 				while (true)
 				{
@@ -191,5 +183,11 @@ namespace AsyncChat.Domain
 				logger.Error(exception.Message);
 			}
 		}
+
+		public delegate void ClientConnected();
+		public ClientConnected ClientConnectedMethod;
+
+		public delegate void ClientDisconnected();
+		public ClientConnected ClientDisconnectedMethod;
 	}
 }

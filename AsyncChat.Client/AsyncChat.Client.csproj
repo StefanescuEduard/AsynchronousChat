@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AsyncChat.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="RandomNameGeneratorLibrary, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RandomNameGeneratorLibrary.1.2.2.0\lib\net40\RandomNameGeneratorLibrary.dll</HintPath>
@@ -94,6 +97,15 @@
       <Project>{dd16f3c6-11cb-439e-ba4c-b97c50b07272}</Project>
       <Name>AsyncChat.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\power-cord-green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\power-cord-red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AsyncChat.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -60,8 +60,8 @@ namespace AsyncChat.Service
 			Console.WriteLine("Server started.");
 			AsyncServer.ClientConnectedMethod += DisplayConnectedMessage;
 			AsyncServer.ClientDisconnectedMethod += DisplayDisconnectedMessage;
-			OnStart(args);
 			Console.WriteLine("Press CTRL+C to close the AsyncChat service.");
+			OnStart(args);
 			Console.ReadKey();
 			OnStop();
 			Console.WriteLine("Server stopped.");
@@ -75,7 +75,7 @@ namespace AsyncChat.Service
 
 		public void DisplayDisconnectedMessage()
 		{
-			Console.WriteLine("Client connected.");
+			Console.WriteLine("Client disconnected.");
 		}
 	}
 }

@@ -14,12 +14,6 @@ namespace AsyncChat.Domain
 		private IPAddress ipAddress;
 		private readonly ILog logger;
 
-		public delegate void ChatContentReceived();
-		public ChatContentReceived ChatContentReceivedMethod;
-
-		public delegate void ExceptionThrown(string exceptionMessage);
-		public ExceptionThrown ExceptionThrownMethod;
-
 		public string ChatContent { get; private set; }
 
 		public AsyncClient()
@@ -48,7 +42,7 @@ namespace AsyncChat.Domain
 			}
 		}
 
-		public bool Connect()
+		public void Connect()
 		{
 			try
 			{
@@ -56,15 +50,14 @@ namespace AsyncChat.Domain
 
 				state.TcpListener.BeginConnect(state.EndPoint, new AsyncCallback(ConnectCallback), null);
 
-				return true;
+				ConnectionIvokedMethod.Invoke(true);
 			}
 			catch (Exception exception)
 			{
+				ConnectionIvokedMethod.Invoke(false);
 				logger.Error(exception.Message, exception);
 				ExceptionThrownMethod.Invoke(exception.Message);
 			}
-
-			return false;
 		}
 
 		public void Send(string message)
@@ -133,5 +126,14 @@ namespace AsyncChat.Domain
 				ExceptionThrownMethod.Invoke(exception.Message);
 			}
 		}
+
+		public delegate void ChatContentReceived();
+		public ChatContentReceived ChatContentReceivedMethod;
+
+		public delegate void ExceptionThrown(string exceptionMessage);
+		public ExceptionThrown ExceptionThrownMethod;
+
+		public delegate void ConnectionIvoked(bool connected);
+		public ConnectionIvoked ConnectionIvokedMethod;
 	}
 }

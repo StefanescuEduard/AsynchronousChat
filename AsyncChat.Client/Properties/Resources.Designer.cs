@@ -61,6 +61,26 @@ namespace AsyncChat.Client.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap power_cord_green {
+            get {
+                object obj = ResourceManager.GetObject("power-cord-green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap power_cord_red {
+            get {
+                object obj = ResourceManager.GetObject("power-cord-red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You need to enter an IP server address..
         /// </summary>
         internal static string Warning_EmptyIpAddress {
