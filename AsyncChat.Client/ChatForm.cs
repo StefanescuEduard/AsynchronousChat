@@ -34,6 +34,7 @@ namespace AsyncChat.Client
 			btnDisconnect.Enabled = false;
 			txtMessage.Enabled = false;
 			btnSend.Enabled = false;
+			HandleConnection(false);
 		}
 
 		private void OnConnectButtonClick(object sender, EventArgs e)
@@ -87,7 +88,6 @@ namespace AsyncChat.Client
 		private void OnDisconnectButtonClick(object sender, EventArgs e)
 		{
 			asyncClient.Send("disconnect");
-			HandleConnection(false);
 			InitializeControls();
 		}
 

@@ -49,7 +49,7 @@
 			// 
 			this.lblIP.AutoSize = true;
 			this.lblIP.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.lblIP.Location = new System.Drawing.Point(12, 37);
+			this.lblIP.Location = new System.Drawing.Point(12, 34);
 			this.lblIP.Name = "lblIP";
 			this.lblIP.Size = new System.Drawing.Size(25, 18);
 			this.lblIP.TabIndex = 0;
@@ -57,16 +57,17 @@
 			// 
 			// txtIP
 			// 
+			this.txtIP.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.txtIP.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.txtIP.Location = new System.Drawing.Point(43, 34);
 			this.txtIP.Name = "txtIP";
-			this.txtIP.Size = new System.Drawing.Size(148, 26);
+			this.txtIP.Size = new System.Drawing.Size(148, 19);
 			this.txtIP.TabIndex = 1;
 			// 
 			// btnConnect
 			// 
 			this.btnConnect.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.btnConnect.Location = new System.Drawing.Point(408, 31);
+			this.btnConnect.Location = new System.Drawing.Point(408, 27);
 			this.btnConnect.Name = "btnConnect";
 			this.btnConnect.Size = new System.Drawing.Size(75, 30);
 			this.btnConnect.TabIndex = 4;
@@ -76,6 +77,7 @@
 			// 
 			// rTxtContent
 			// 
+			this.rTxtContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.rTxtContent.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.rTxtContent.Location = new System.Drawing.Point(12, 64);
 			this.rTxtContent.Name = "rTxtContent";
@@ -87,6 +89,7 @@
 			// 
 			// txtMessage
 			// 
+			this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.txtMessage.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.txtMessage.Location = new System.Drawing.Point(12, 252);
 			this.txtMessage.Multiline = true;
@@ -110,7 +113,7 @@
 			// 
 			this.lblName.AutoSize = true;
 			this.lblName.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.lblName.Location = new System.Drawing.Point(197, 37);
+			this.lblName.Location = new System.Drawing.Point(197, 34);
 			this.lblName.Name = "lblName";
 			this.lblName.Size = new System.Drawing.Size(52, 18);
 			this.lblName.TabIndex = 2;
@@ -118,16 +121,17 @@
 			// 
 			// txtName
 			// 
+			this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.txtName.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.txtName.Location = new System.Drawing.Point(255, 34);
 			this.txtName.Name = "txtName";
-			this.txtName.Size = new System.Drawing.Size(131, 26);
+			this.txtName.Size = new System.Drawing.Size(149, 19);
 			this.txtName.TabIndex = 3;
 			// 
 			// btnDisconnect
 			// 
 			this.btnDisconnect.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.btnDisconnect.Location = new System.Drawing.Point(489, 31);
+			this.btnDisconnect.Location = new System.Drawing.Point(489, 27);
 			this.btnDisconnect.Name = "btnDisconnect";
 			this.btnDisconnect.Size = new System.Drawing.Size(102, 30);
 			this.btnDisconnect.TabIndex = 5;
