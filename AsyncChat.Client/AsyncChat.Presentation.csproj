@@ -111,6 +111,10 @@
       <Project>{d9ff64bb-c019-42b8-a9de-e30727728024}</Project>
       <Name>AsyncChat.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AsyncChat.Persistence\AsyncChat.Persistence.csproj">
+      <Project>{08b5faff-130f-40da-bb10-736eaa167033}</Project>
+      <Name>AsyncChat.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AsyncChat.Service\AsyncChat.Service.csproj">
       <Project>{dd16f3c6-11cb-439e-ba4c-b97c50b07272}</Project>
       <Name>AsyncChat.Service</Name>
