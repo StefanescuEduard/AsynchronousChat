@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace AsyncChat.Presentation
+namespace AsyncChat.Presentation.Views
 {
 	public partial class RegisterView : UserControl
 	{

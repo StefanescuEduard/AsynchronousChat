@@ -1,4 +1,4 @@
-﻿namespace AsyncChat.Presentation
+﻿namespace AsyncChat.Presentation.Views
 {
 	partial class RegisterView
 	{

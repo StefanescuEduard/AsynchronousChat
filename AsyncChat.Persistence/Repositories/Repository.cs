@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace AsyncChat.Persistence
+namespace AsyncChat.Persistence.Repository
 {
 	public class Repository<TEntity> where TEntity : class
 	{

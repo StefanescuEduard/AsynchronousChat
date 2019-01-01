@@ -90,12 +90,20 @@ namespace AsyncChat.Presentation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to enter a name.
-        ///Do you want a default name?.
+        ///   Looks up a localized string similar to You need to enter your name..
         /// </summary>
         internal static string Warning_EmptyName {
             get {
                 return ResourceManager.GetString("Warning_EmptyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to enter your password..
+        /// </summary>
+        internal static string Warning_EmptyPassword {
+            get {
+                return ResourceManager.GetString("Warning_EmptyPassword", resourceCulture);
             }
         }
         
@@ -114,6 +122,15 @@ namespace AsyncChat.Presentation.Properties {
         internal static string Warning_Title_EmptyName {
             get {
                 return ResourceManager.GetString("Warning_Title_EmptyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty password.
+        /// </summary>
+        internal static string Warning_Title_EmptyPassword {
+            get {
+                return ResourceManager.GetString("Warning_Title_EmptyPassword", resourceCulture);
             }
         }
     }

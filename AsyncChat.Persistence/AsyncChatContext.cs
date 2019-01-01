@@ -1,4 +1,4 @@
-﻿using AsyncChat.Domain;
+﻿using AsyncChat.Entities.Domain;
 using System.Data.Entity;
 
 namespace AsyncChat.Persistence

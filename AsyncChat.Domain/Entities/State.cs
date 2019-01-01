@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 
-namespace AsyncChat.Domain
+namespace AsyncChat.Domain.Entities
 {
 	public class State
 	{

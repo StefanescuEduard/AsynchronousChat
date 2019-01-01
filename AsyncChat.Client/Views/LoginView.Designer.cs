@@ -1,4 +1,4 @@
-﻿namespace AsyncChat.Presentation
+﻿namespace AsyncChat.Presentation.Views
 {
 	partial class LoginView
 	{
@@ -92,6 +92,7 @@
 			this.btnLogin.TabIndex = 5;
 			this.btnLogin.Text = "Login";
 			this.btnLogin.UseVisualStyleBackColor = true;
+			this.btnLogin.Click += new System.EventHandler(this.OnButtonLoginClick);
 			// 
 			// LoginView
 			// 

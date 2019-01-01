@@ -1,7 +1,7 @@
-﻿using AsyncChat.Domain;
+﻿using AsyncChat.Domain.Entities;
 using System.Linq;
 
-namespace AsyncChat.Persistence
+namespace AsyncChat.Persistence.Repository
 {
 	public class UserRepository : Repository<User>
 	{

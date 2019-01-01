@@ -59,24 +59,24 @@
     <Compile Include="ChatForm.Designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginView.cs">
+    <Compile Include="Views\LoginView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LoginView.Designer.cs">
+    <Compile Include="Views\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterView.cs">
+    <Compile Include="Views\RegisterView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RegisterView.Designer.cs">
+    <Compile Include="Views\RegisterView.Designer.cs">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginView.resx">
+    <EmbeddedResource Include="Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -89,7 +89,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RegisterView.resx">
+    <EmbeddedResource Include="Views\RegisterView.resx">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

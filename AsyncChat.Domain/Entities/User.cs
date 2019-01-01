@@ -1,4 +1,4 @@
-﻿namespace AsyncChat.Domain
+﻿namespace AsyncChat.Domain.Entities
 {
 	public class User
 	{

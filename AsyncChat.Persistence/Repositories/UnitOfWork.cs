@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AsyncChat.Persistence
+namespace AsyncChat.Persistence.Repository
 {
 	public class UnitOfWork : IDisposable
 	{

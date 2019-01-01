@@ -34,6 +34,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GodSharp.Encryption, Version=2018.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GodSharp.Encryption.2018.4.1\lib\net47\GodSharp.Encryption.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -52,9 +55,10 @@
   <ItemGroup>
     <Compile Include="AsyncClient.cs" />
     <Compile Include="AsyncServer.cs" />
-    <Compile Include="State.cs" />
+    <Compile Include="PasswordCrypter.cs" />
+    <Compile Include="Entities\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="log4net.config">

@@ -1,4 +1,6 @@
-﻿namespace AsyncChat.Presentation
+﻿using AsyncChat.Presentation.Views;
+
+namespace AsyncChat.Presentation
 {
 	partial class ChatForm
 	{
@@ -42,7 +44,7 @@
 			this.btnConnect = new System.Windows.Forms.Button();
 			this.btnDisconnect = new System.Windows.Forms.Button();
 			this.panBackground = new System.Windows.Forms.Panel();
-			this.loginView = new AsyncChat.Presentation.LoginView();
+			this.loginView = new AsyncChat.Presentation.Views.LoginView();
 			((System.ComponentModel.ISupportInitialize)(this.picBoxStatus)).BeginInit();
 			this.panBackground.SuspendLayout();
 			this.SuspendLayout();
