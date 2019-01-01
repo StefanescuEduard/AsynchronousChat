@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace AsyncChat.Client
+namespace AsyncChat.Presentation
 {
 	public partial class LoginView : UserControl
 	{

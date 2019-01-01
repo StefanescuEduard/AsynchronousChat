@@ -1,11 +1,11 @@
-﻿using AsyncChat.Client.Properties;
-using AsyncChat.Domain;
+﻿using AsyncChat.Domain;
+using AsyncChat.Presentation.Properties;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace AsyncChat.Client
+namespace AsyncChat.Presentation
 {
 	public partial class ChatForm : Form
 	{

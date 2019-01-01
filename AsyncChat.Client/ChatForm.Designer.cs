@@ -1,4 +1,4 @@
-﻿namespace AsyncChat.Client
+﻿namespace AsyncChat.Presentation
 {
 	partial class ChatForm
 	{
@@ -42,7 +42,7 @@
 			this.btnConnect = new System.Windows.Forms.Button();
 			this.btnDisconnect = new System.Windows.Forms.Button();
 			this.panBackground = new System.Windows.Forms.Panel();
-			this.loginView = new AsyncChat.Client.LoginView();
+			this.loginView = new AsyncChat.Presentation.LoginView();
 			((System.ComponentModel.ISupportInitialize)(this.picBoxStatus)).BeginInit();
 			this.panBackground.SuspendLayout();
 			this.SuspendLayout();
@@ -94,7 +94,7 @@
 			// picBoxStatus
 			// 
 			this.picBoxStatus.BackColor = System.Drawing.Color.Transparent;
-			this.picBoxStatus.Image = global::AsyncChat.Client.Properties.Resources.power_cord_red;
+			this.picBoxStatus.Image = global::AsyncChat.Presentation.Properties.Resources.power_cord_red;
 			this.picBoxStatus.Location = new System.Drawing.Point(70, 4);
 			this.picBoxStatus.Name = "picBoxStatus";
 			this.picBoxStatus.Size = new System.Drawing.Size(24, 24);

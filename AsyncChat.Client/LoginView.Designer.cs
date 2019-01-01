@@ -1,4 +1,4 @@
-﻿namespace AsyncChat.Client
+﻿namespace AsyncChat.Presentation
 {
 	partial class LoginView
 	{

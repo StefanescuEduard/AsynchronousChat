@@ -1,4 +1,4 @@
-﻿namespace AsyncChat.Client
+﻿namespace AsyncChat.Presentation
 {
 	partial class RegisterView
 	{
@@ -88,14 +88,14 @@
 			this.lblPassword.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.lblPassword.Location = new System.Drawing.Point(18, 150);
 			this.lblPassword.Name = "lblPassword";
-			this.lblPassword.Size = new System.Drawing.Size(74, 18);
+			this.lblPassword.Size = new System.Drawing.Size(78, 18);
 			this.lblPassword.TabIndex = 7;
-			this.lblPassword.Text = "Password";
+			this.lblPassword.Text = "Password:";
 			// 
 			// btnRegister
 			// 
 			this.btnRegister.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.btnRegister.Location = new System.Drawing.Point(208, 218);
+			this.btnRegister.Location = new System.Drawing.Point(208, 212);
 			this.btnRegister.Name = "btnRegister";
 			this.btnRegister.Size = new System.Drawing.Size(75, 28);
 			this.btnRegister.TabIndex = 9;
@@ -105,7 +105,7 @@
 			// btnBack
 			// 
 			this.btnBack.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.btnBack.Location = new System.Drawing.Point(21, 218);
+			this.btnBack.Location = new System.Drawing.Point(21, 212);
 			this.btnBack.Name = "btnBack";
 			this.btnBack.Size = new System.Drawing.Size(75, 28);
 			this.btnBack.TabIndex = 10;

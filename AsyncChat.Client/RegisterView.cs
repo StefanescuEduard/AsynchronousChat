@@ -1,7 +1,6 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace AsyncChat.Client
+namespace AsyncChat.Presentation
 {
 	public partial class RegisterView : UserControl
 	{
