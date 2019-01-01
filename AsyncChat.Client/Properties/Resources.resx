@@ -117,29 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Warning_Title_EmptyName" xml:space="preserve">
-    <value>Empty name</value>
-  </data>
   <data name="Warning_EmptyName" xml:space="preserve">
     <value>You need to enter your name.</value>
-  </data>
-  <data name="Warning_EmptyIpAddress" xml:space="preserve">
-    <value>You need to enter an IP server address.</value>
-  </data>
-  <data name="Warning_Title_EmptyIpAddress" xml:space="preserve">
-    <value>Empty IP server address</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="power-cord-green" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\power-cord-green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="power-cord-red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\power-cord-red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warning_EmptyPassword" xml:space="preserve">
     <value>You need to enter your password.</value>
   </data>
+  <data name="Warning_Title_EmptyIpAddress" xml:space="preserve">
+    <value>Empty IP server address</value>
+  </data>
+  <data name="Information_Title_AccountCreated" xml:space="preserve">
+    <value>Account created</value>
+  </data>
+  <data name="Warning_EmptyIpAddress" xml:space="preserve">
+    <value>You need to enter a server address.</value>
+  </data>
+  <data name="Warning_Title_IncorrectCredentials" xml:space="preserve">
+    <value>Incorrect credentials</value>
+  </data>
+  <data name="Information_AccountCreated" xml:space="preserve">
+    <value>The account was created successfully.</value>
+  </data>
+  <data name="Warning_Title_EmptyName" xml:space="preserve">
+    <value>Empty name</value>
+  </data>
+  <data name="Warning_EmptyEmail" xml:space="preserve">
+    <value>You need to enter an email.</value>
+  </data>
+  <data name="Warning_IncorrectCredentials" xml:space="preserve">
+    <value>You entered a wrong name or password.</value>
+  </data>
+  <data name="Warning_Title_EmptyEmail" xml:space="preserve">
+    <value>Empty email</value>
+  </data>
   <data name="Warning_Title_EmptyPassword" xml:space="preserve">
     <value>Empty password</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="PowerCordGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\PowerCordGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PowerCordRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\PowerCordRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

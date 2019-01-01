@@ -61,11 +61,29 @@ namespace AsyncChat.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The account was created successfully..
+        /// </summary>
+        internal static string Information_AccountCreated {
+            get {
+                return ResourceManager.GetString("Information_AccountCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account created.
+        /// </summary>
+        internal static string Information_Title_AccountCreated {
+            get {
+                return ResourceManager.GetString("Information_Title_AccountCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap power_cord_green {
+        internal static System.Drawing.Bitmap PowerCordGreen {
             get {
-                object obj = ResourceManager.GetObject("power-cord-green", resourceCulture);
+                object obj = ResourceManager.GetObject("PowerCordGreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,15 +91,24 @@ namespace AsyncChat.Presentation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap power_cord_red {
+        internal static System.Drawing.Bitmap PowerCordRed {
             get {
-                object obj = ResourceManager.GetObject("power-cord-red", resourceCulture);
+                object obj = ResourceManager.GetObject("PowerCordRed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to enter an IP server address..
+        ///   Looks up a localized string similar to You need to enter an email..
+        /// </summary>
+        internal static string Warning_EmptyEmail {
+            get {
+                return ResourceManager.GetString("Warning_EmptyEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to enter a server address..
         /// </summary>
         internal static string Warning_EmptyIpAddress {
             get {
@@ -104,6 +131,24 @@ namespace AsyncChat.Presentation.Properties {
         internal static string Warning_EmptyPassword {
             get {
                 return ResourceManager.GetString("Warning_EmptyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You entered a wrong name or password..
+        /// </summary>
+        internal static string Warning_IncorrectCredentials {
+            get {
+                return ResourceManager.GetString("Warning_IncorrectCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty email.
+        /// </summary>
+        internal static string Warning_Title_EmptyEmail {
+            get {
+                return ResourceManager.GetString("Warning_Title_EmptyEmail", resourceCulture);
             }
         }
         
@@ -131,6 +176,15 @@ namespace AsyncChat.Presentation.Properties {
         internal static string Warning_Title_EmptyPassword {
             get {
                 return ResourceManager.GetString("Warning_Title_EmptyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect credentials.
+        /// </summary>
+        internal static string Warning_Title_IncorrectCredentials {
+            get {
+                return ResourceManager.GetString("Warning_Title_IncorrectCredentials", resourceCulture);
             }
         }
     }

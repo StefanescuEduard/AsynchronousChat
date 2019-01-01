@@ -79,6 +79,7 @@
 			this.txtPassword.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.txtPassword.Location = new System.Drawing.Point(21, 171);
 			this.txtPassword.Name = "txtPassword";
+			this.txtPassword.PasswordChar = '•';
 			this.txtPassword.Size = new System.Drawing.Size(262, 26);
 			this.txtPassword.TabIndex = 8;
 			// 
@@ -101,6 +102,7 @@
 			this.btnRegister.TabIndex = 9;
 			this.btnRegister.Text = "Register";
 			this.btnRegister.UseVisualStyleBackColor = true;
+			this.btnRegister.Click += new System.EventHandler(this.OnRegisterButtonClick);
 			// 
 			// btnBack
 			// 
@@ -111,6 +113,7 @@
 			this.btnBack.TabIndex = 10;
 			this.btnBack.Text = "Back";
 			this.btnBack.UseVisualStyleBackColor = true;
+			this.btnBack.Click += new System.EventHandler(this.OnButtonBackClick);
 			// 
 			// RegisterView
 			// 

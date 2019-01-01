@@ -32,8 +32,9 @@
 			this.lblPassword = new System.Windows.Forms.Label();
 			this.txtName = new System.Windows.Forms.TextBox();
 			this.txtPassword = new System.Windows.Forms.TextBox();
-			this.btnRegister = new System.Windows.Forms.Button();
+			this.btnCreateAccount = new System.Windows.Forms.Button();
 			this.btnLogin = new System.Windows.Forms.Button();
+			this.registerView = new AsyncChat.Presentation.Views.RegisterView();
 			this.SuspendLayout();
 			// 
 			// lblName
@@ -69,19 +70,20 @@
 			this.txtPassword.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.txtPassword.Location = new System.Drawing.Point(18, 141);
 			this.txtPassword.Name = "txtPassword";
-			this.txtPassword.PasswordChar = '*';
+			this.txtPassword.PasswordChar = '•';
 			this.txtPassword.Size = new System.Drawing.Size(262, 26);
 			this.txtPassword.TabIndex = 3;
 			// 
-			// btnRegister
+			// btnCreateAccount
 			// 
-			this.btnRegister.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.btnRegister.Location = new System.Drawing.Point(18, 178);
-			this.btnRegister.Name = "btnRegister";
-			this.btnRegister.Size = new System.Drawing.Size(75, 28);
-			this.btnRegister.TabIndex = 4;
-			this.btnRegister.Text = "Register";
-			this.btnRegister.UseVisualStyleBackColor = true;
+			this.btnCreateAccount.Font = new System.Drawing.Font("Roboto", 11.25F);
+			this.btnCreateAccount.Location = new System.Drawing.Point(18, 178);
+			this.btnCreateAccount.Name = "btnCreateAccount";
+			this.btnCreateAccount.Size = new System.Drawing.Size(125, 28);
+			this.btnCreateAccount.TabIndex = 4;
+			this.btnCreateAccount.Text = "Create account";
+			this.btnCreateAccount.UseVisualStyleBackColor = true;
+			this.btnCreateAccount.Click += new System.EventHandler(this.OnButtonRegisterClick);
 			// 
 			// btnLogin
 			// 
@@ -94,12 +96,21 @@
 			this.btnLogin.UseVisualStyleBackColor = true;
 			this.btnLogin.Click += new System.EventHandler(this.OnButtonLoginClick);
 			// 
+			// registerView
+			// 
+			this.registerView.Location = new System.Drawing.Point(0, 0);
+			this.registerView.Name = "registerView";
+			this.registerView.Size = new System.Drawing.Size(300, 300);
+			this.registerView.TabIndex = 6;
+			this.registerView.Visible = false;
+			// 
 			// LoginView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.registerView);
 			this.Controls.Add(this.btnLogin);
-			this.Controls.Add(this.btnRegister);
+			this.Controls.Add(this.btnCreateAccount);
 			this.Controls.Add(this.txtPassword);
 			this.Controls.Add(this.txtName);
 			this.Controls.Add(this.lblPassword);
@@ -118,7 +129,8 @@
 		private System.Windows.Forms.Label lblPassword;
 		private System.Windows.Forms.TextBox txtName;
 		private System.Windows.Forms.TextBox txtPassword;
-		private System.Windows.Forms.Button btnRegister;
+		private System.Windows.Forms.Button btnCreateAccount;
 		private System.Windows.Forms.Button btnLogin;
+		private RegisterView registerView;
 	}
 }

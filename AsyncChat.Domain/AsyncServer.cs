@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using AsyncChat.Domain.Entities;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Net;

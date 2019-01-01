@@ -38,7 +38,7 @@ namespace AsyncChat.Presentation
 			this.lblStatus = new System.Windows.Forms.Label();
 			this.picBoxStatus = new System.Windows.Forms.PictureBox();
 			this.lblConnectionStatus = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnLogout = new System.Windows.Forms.Button();
 			this.txtIP = new System.Windows.Forms.TextBox();
 			this.lblServer = new System.Windows.Forms.Label();
 			this.btnConnect = new System.Windows.Forms.Button();
@@ -51,7 +51,6 @@ namespace AsyncChat.Presentation
 			// 
 			// rTxtContent
 			// 
-			this.rTxtContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.rTxtContent.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.rTxtContent.Location = new System.Drawing.Point(12, 64);
 			this.rTxtContent.Name = "rTxtContent";
@@ -63,7 +62,6 @@ namespace AsyncChat.Presentation
 			// 
 			// txtMessage
 			// 
-			this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.txtMessage.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.txtMessage.Location = new System.Drawing.Point(12, 252);
 			this.txtMessage.Multiline = true;
@@ -96,7 +94,7 @@ namespace AsyncChat.Presentation
 			// picBoxStatus
 			// 
 			this.picBoxStatus.BackColor = System.Drawing.Color.Transparent;
-			this.picBoxStatus.Image = global::AsyncChat.Presentation.Properties.Resources.power_cord_red;
+			this.picBoxStatus.Image = global::AsyncChat.Presentation.Properties.Resources.PowerCordRed;
 			this.picBoxStatus.Location = new System.Drawing.Point(70, 4);
 			this.picBoxStatus.Name = "picBoxStatus";
 			this.picBoxStatus.Size = new System.Drawing.Size(24, 24);
@@ -115,30 +113,30 @@ namespace AsyncChat.Presentation
 			this.lblConnectionStatus.TabIndex = 11;
 			this.lblConnectionStatus.Text = "disconnected";
 			// 
-			// button1
+			// btnLogout
 			// 
-			this.button1.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.button1.Location = new System.Drawing.Point(505, 28);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(86, 30);
-			this.button1.TabIndex = 16;
-			this.button1.Text = "Log out";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnLogout.Font = new System.Drawing.Font("Roboto", 11.25F);
+			this.btnLogout.Location = new System.Drawing.Point(505, 31);
+			this.btnLogout.Name = "btnLogout";
+			this.btnLogout.Size = new System.Drawing.Size(86, 30);
+			this.btnLogout.TabIndex = 16;
+			this.btnLogout.Text = "Log out";
+			this.btnLogout.UseVisualStyleBackColor = true;
+			this.btnLogout.Click += new System.EventHandler(this.OnLogoutButtonClick);
 			// 
 			// txtIP
 			// 
-			this.txtIP.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.txtIP.Font = new System.Drawing.Font("Roboto", 11.25F);
 			this.txtIP.Location = new System.Drawing.Point(70, 34);
 			this.txtIP.Name = "txtIP";
-			this.txtIP.Size = new System.Drawing.Size(148, 19);
+			this.txtIP.Size = new System.Drawing.Size(148, 26);
 			this.txtIP.TabIndex = 13;
 			// 
 			// lblServer
 			// 
 			this.lblServer.AutoSize = true;
 			this.lblServer.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.lblServer.Location = new System.Drawing.Point(9, 34);
+			this.lblServer.Location = new System.Drawing.Point(9, 38);
 			this.lblServer.Name = "lblServer";
 			this.lblServer.Size = new System.Drawing.Size(54, 18);
 			this.lblServer.TabIndex = 12;
@@ -147,22 +145,24 @@ namespace AsyncChat.Presentation
 			// btnConnect
 			// 
 			this.btnConnect.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.btnConnect.Location = new System.Drawing.Point(316, 28);
+			this.btnConnect.Location = new System.Drawing.Point(316, 31);
 			this.btnConnect.Name = "btnConnect";
 			this.btnConnect.Size = new System.Drawing.Size(75, 30);
 			this.btnConnect.TabIndex = 14;
 			this.btnConnect.Text = "Connect";
 			this.btnConnect.UseVisualStyleBackColor = true;
+			this.btnConnect.Click += new System.EventHandler(this.OnConnectButtonClick);
 			// 
 			// btnDisconnect
 			// 
 			this.btnDisconnect.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.btnDisconnect.Location = new System.Drawing.Point(397, 28);
+			this.btnDisconnect.Location = new System.Drawing.Point(397, 31);
 			this.btnDisconnect.Name = "btnDisconnect";
 			this.btnDisconnect.Size = new System.Drawing.Size(102, 30);
 			this.btnDisconnect.TabIndex = 15;
 			this.btnDisconnect.Text = "Disconnect";
 			this.btnDisconnect.UseVisualStyleBackColor = true;
+			this.btnDisconnect.Click += new System.EventHandler(this.OnDisconnectButtonClick);
 			// 
 			// panBackground
 			// 
@@ -187,7 +187,7 @@ namespace AsyncChat.Presentation
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(604, 292);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btnLogout);
 			this.Controls.Add(this.txtIP);
 			this.Controls.Add(this.lblServer);
 			this.Controls.Add(this.btnConnect);
@@ -220,7 +220,7 @@ namespace AsyncChat.Presentation
 		private System.Windows.Forms.Label lblStatus;
 		private System.Windows.Forms.PictureBox picBoxStatus;
 		private System.Windows.Forms.Label lblConnectionStatus;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnLogout;
 		private System.Windows.Forms.TextBox txtIP;
 		private System.Windows.Forms.Label lblServer;
 		private System.Windows.Forms.Button btnConnect;

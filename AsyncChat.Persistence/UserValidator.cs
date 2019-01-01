@@ -13,15 +13,20 @@ namespace AsyncChat.Persistence
 			passwordEncrypter = new PasswordEncrypter();
 		}
 
-		public bool Validate(User user)
+		public bool IsValid(User user)
 		{
 			using (var unitOfWork = new UnitOfWork())
 			{
-				var dbUser = unitOfWork.UserRepository.GetUser(user.Name);
+				var dbUser = unitOfWork.UserRepository.GetUser(user.Name).Result;
 				if (dbUser == null)
 				{
 					return false;
 				}
+				if (user.Name != dbUser.Name)
+				{
+					return false;
+				}
+
 				return ValidatePassword(user.Password, dbUser.Password);
 			}
 		}

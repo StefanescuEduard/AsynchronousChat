@@ -11,10 +11,14 @@ namespace AsyncChat.Presentation
 	{
 		private AsyncClient asyncClient;
 		private bool exceptionThrown = false;
+		private string userName;
 
 		public ChatForm()
 		{
 			InitializeComponent();
+
+			loginView.UserLogedMethod += HideLoginView;
+
 			InitializeControls();
 			ShowLoginView();
 
@@ -61,6 +65,19 @@ namespace AsyncChat.Presentation
 			}
 		}
 
+		private void OnLogoutButtonClick(object sender, EventArgs e)
+		{
+			loginView.Visible = true;
+			panBackground.Visible = true;
+			ResetInputControls();
+		}
+
+		private void OnDisconnectButtonClick(object sender, EventArgs e)
+		{
+			asyncClient.Send("disconnect");
+			InitializeControls();
+		}
+
 		private void SetControlsForConnection()
 		{
 			txtIP.Enabled = false;
@@ -68,12 +85,6 @@ namespace AsyncChat.Presentation
 			btnDisconnect.Enabled = true;
 			txtMessage.Enabled = true;
 			btnSend.Enabled = true;
-		}
-
-		private void OnDisconnectButtonClick(object sender, EventArgs e)
-		{
-			asyncClient.Send("disconnect");
-			InitializeControls();
 		}
 
 		private void OnSendButtonClick(object sender, EventArgs e)
@@ -90,7 +101,7 @@ namespace AsyncChat.Presentation
 			}
 			if (!string.IsNullOrEmpty(message))
 			{
-				//asyncClient.Send($"{txtName.Text}: {message}");
+				asyncClient.Send($"{userName}: {message}");
 				txtMessage.Clear();
 			}
 		}
@@ -142,14 +153,29 @@ namespace AsyncChat.Presentation
 			{
 				lblConnectionStatus.Text = "Connected";
 				lblConnectionStatus.ForeColor = ColorTranslator.FromHtml("#0be881");
-				picBoxStatus.Image = Resources.power_cord_green;
+				picBoxStatus.Image = Resources.PowerCordGreen;
 			}
 			else
 			{
 				lblConnectionStatus.Text = "Disconnected";
 				lblConnectionStatus.ForeColor = ColorTranslator.FromHtml("#ff3f34");
-				picBoxStatus.Image = Resources.power_cord_red;
+				picBoxStatus.Image = Resources.PowerCordRed;
 			}
+		}
+
+		private void HideLoginView(string userName)
+		{
+			loginView.Visible = false;
+			panBackground.Visible = false;
+			this.userName = userName;
+			rTxtContent.AppendText($"{userName} logged successfully.\r\n");
+		}
+
+		private void ResetInputControls()
+		{
+			rTxtContent.Text = string.Empty;
+			txtIP.Text = string.Empty;
+			txtMessage.Text = string.Empty;
 		}
 	}
 }
