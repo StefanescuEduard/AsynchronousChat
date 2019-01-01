@@ -1,6 +1,5 @@
 ﻿using AsyncChat.Client.Properties;
 using AsyncChat.Domain;
-using RandomNameGeneratorLibrary;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -17,6 +16,7 @@ namespace AsyncChat.Client
 		{
 			InitializeComponent();
 			InitializeControls();
+			ShowLoginView();
 
 			asyncClient = new AsyncClient();
 			asyncClient.ExceptionThrownMethod += HandleException;
@@ -30,7 +30,6 @@ namespace AsyncChat.Client
 			txtMessage.Text = string.Empty;
 			txtIP.Enabled = true;
 			btnConnect.Enabled = true;
-			txtName.Enabled = true;
 			btnDisconnect.Enabled = false;
 			txtMessage.Enabled = false;
 			btnSend.Enabled = false;
@@ -39,7 +38,7 @@ namespace AsyncChat.Client
 
 		private void OnConnectButtonClick(object sender, EventArgs e)
 		{
-			if (!string.IsNullOrEmpty(txtIP.Text) && !string.IsNullOrEmpty(txtName.Text))
+			if (!string.IsNullOrEmpty(txtIP.Text))
 			{
 				asyncClient.SetConnectionForClient(txtIP.Text);
 				if (exceptionThrown)
@@ -59,26 +58,12 @@ namespace AsyncChat.Client
 						MessageBoxButtons.OK, MessageBoxIcon.Warning);
 					return;
 				}
-				if (string.IsNullOrEmpty(txtName.Text))
-				{
-					var messageBoxResult = MessageBox.Show(this, Resources.Warning_EmptyName, Resources.Warning_Title_EmptyName,
-						MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-					if (messageBoxResult == DialogResult.Yes)
-					{
-						txtName.Enabled = false;
-
-						var nameGenerator = new PersonNameGenerator();
-						txtName.Text = nameGenerator.GenerateRandomFirstName();
-					}
-					OnConnectButtonClick(sender, e);
-				}
 			}
 		}
 
 		private void SetControlsForConnection()
 		{
 			txtIP.Enabled = false;
-			txtName.Enabled = false;
 			btnConnect.Enabled = false;
 			btnDisconnect.Enabled = true;
 			txtMessage.Enabled = true;
@@ -105,7 +90,7 @@ namespace AsyncChat.Client
 			}
 			if (!string.IsNullOrEmpty(message))
 			{
-				asyncClient.Send($"{txtName.Text}: {message}");
+				//asyncClient.Send($"{txtName.Text}: {message}");
 				txtMessage.Clear();
 			}
 		}
@@ -121,6 +106,13 @@ namespace AsyncChat.Client
 		private void OnBackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			rTxtContent.AppendText($"{asyncClient.ChatContent}\r\n");
+		}
+
+		private void ShowLoginView()
+		{
+			panBackground.BringToFront();
+			panBackground.BackColor = Color.FromArgb(5, 210, 218, 226);
+			loginView.Visible = true;
 		}
 
 		private void OnChatContentBoxKeyDown(object sender, KeyEventArgs e)

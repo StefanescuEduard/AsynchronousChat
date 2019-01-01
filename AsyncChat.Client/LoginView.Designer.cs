@@ -97,7 +97,6 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.Controls.Add(this.btnLogin);
 			this.Controls.Add(this.btnRegister);
 			this.Controls.Add(this.txtPassword);
@@ -106,7 +105,7 @@
 			this.Controls.Add(this.lblName);
 			this.Margin = new System.Windows.Forms.Padding(50, 3, 15, 3);
 			this.Name = "LoginView";
-			this.Size = new System.Drawing.Size(298, 298);
+			this.Size = new System.Drawing.Size(300, 300);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
