@@ -1,6 +1,7 @@
 ﻿using AsyncChat.Domain;
 using AsyncChat.Domain.Entities;
 using AsyncChat.Persistence.Repository;
+using System.Threading.Tasks;
 
 namespace AsyncChat.Persistence
 {
@@ -13,11 +14,11 @@ namespace AsyncChat.Persistence
 			passwordEncrypter = new PasswordEncrypter();
 		}
 
-		public bool IsValid(User user)
+		public async Task<bool> Validate(User user)
 		{
 			using (var unitOfWork = new UnitOfWork())
 			{
-				var dbUser = unitOfWork.UserRepository.GetUser(user.Name).Result;
+				var dbUser = await unitOfWork.UserRepository.GetUserAsync(user.Name);
 				if (dbUser == null)
 				{
 					return false;

@@ -3,6 +3,7 @@ using AsyncChat.Domain.Entities;
 using AsyncChat.Persistence.Repository;
 using AsyncChat.Presentation.Properties;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsyncChat.Presentation.Views
@@ -18,14 +19,14 @@ namespace AsyncChat.Presentation.Views
 			passwordEncrypter = new PasswordEncrypter();
 		}
 
-		private void OnRegisterButtonClick(object sender, EventArgs e)
+		private async void OnRegisterButtonClickAsync(object sender, EventArgs e)
 		{
 			if (!AreAllFieldsEntered())
 			{
 				return;
 			}
 
-			SaveUser();
+			await SaveUserAsync();
 			ResetInputControls();
 			RegisterFinishedMethod.Invoke();
 		}
@@ -36,7 +37,7 @@ namespace AsyncChat.Presentation.Views
 			RegisterFinishedMethod.Invoke();
 		}
 
-		private void SaveUser()
+		private async Task SaveUserAsync()
 		{
 			var user = new User
 			{
@@ -47,11 +48,11 @@ namespace AsyncChat.Presentation.Views
 
 			using (var unitOfWork = new UnitOfWork())
 			{
-				unitOfWork.UserRepository.Add(user);
+				await unitOfWork.UserRepository.AddAsync(user);
 				unitOfWork.Commit();
 			}
 
-			MessageBox.Show(this, Resources.Information_Title_AccountCreated, Resources.Information_AccountCreated,
+			MessageBox.Show(this, Resources.Information_AccountCreated, Resources.Information_Title_AccountCreated,
 				MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
@@ -59,19 +60,19 @@ namespace AsyncChat.Presentation.Views
 		{
 			if (string.IsNullOrEmpty(txtName.Text))
 			{
-				MessageBox.Show(this, Resources.Warning_Title_EmptyName, Resources.Warning_EmptyName,
+				MessageBox.Show(this, Resources.Warning_EmptyName, Resources.Warning_Title_EmptyName,
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return false;
 			}
 			if (string.IsNullOrEmpty(txtEmail.Text))
 			{
-				MessageBox.Show(this, Resources.Warning_Title_EmptyEmail, Resources.Warning_EmptyEmail,
+				MessageBox.Show(this, Resources.Warning_EmptyEmail, Resources.Warning_Title_EmptyEmail,
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return false;
 			}
 			if (string.IsNullOrEmpty(txtPassword.Text))
 			{
-				MessageBox.Show(this, Resources.Warning_Title_EmptyPassword, Resources.Warning_EmptyPassword,
+				MessageBox.Show(this, Resources.Warning_EmptyPassword, Resources.Warning_Title_EmptyPassword,
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return false;
 			}

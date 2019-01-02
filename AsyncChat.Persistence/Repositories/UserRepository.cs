@@ -1,5 +1,5 @@
 ﻿using AsyncChat.Domain.Entities;
-using System.Linq;
+using System.Data.Entity;
 using System.Threading.Tasks;
 
 namespace AsyncChat.Persistence.Repository
@@ -13,9 +13,9 @@ namespace AsyncChat.Persistence.Repository
 
 		}
 
-		public async Task<User> GetUser(string name)
+		public async Task<User> GetUserAsync(string name)
 		{
-			return await Task.Run(() => AsyncChatContext.Users.FirstOrDefault(user => user.Name == name));
+			return await AsyncChatContext.Users.FirstOrDefaultAsync(user => user.Name == name);
 		}
 	}
 }

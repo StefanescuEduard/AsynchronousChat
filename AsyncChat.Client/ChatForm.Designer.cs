@@ -34,7 +34,6 @@ namespace AsyncChat.Presentation
 			this.rTxtContent = new System.Windows.Forms.RichTextBox();
 			this.txtMessage = new System.Windows.Forms.TextBox();
 			this.btnSend = new System.Windows.Forms.Button();
-			this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
 			this.lblStatus = new System.Windows.Forms.Label();
 			this.picBoxStatus = new System.Windows.Forms.PictureBox();
 			this.lblConnectionStatus = new System.Windows.Forms.Label();
@@ -216,7 +215,6 @@ namespace AsyncChat.Presentation
 		private System.Windows.Forms.RichTextBox rTxtContent;
 		private System.Windows.Forms.TextBox txtMessage;
 		private System.Windows.Forms.Button btnSend;
-		private System.ComponentModel.BackgroundWorker backgroundWorker;
 		private System.Windows.Forms.Label lblStatus;
 		private System.Windows.Forms.PictureBox picBoxStatus;
 		private System.Windows.Forms.Label lblConnectionStatus;

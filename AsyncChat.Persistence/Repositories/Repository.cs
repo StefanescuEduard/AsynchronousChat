@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace AsyncChat.Persistence.Repository
 {
@@ -11,9 +12,9 @@ namespace AsyncChat.Persistence.Repository
 			this.DbContext = dbContext;
 		}
 
-		public void Add(TEntity entity)
+		public async Task AddAsync(TEntity entity)
 		{
-			DbContext.Set<TEntity>().Add(entity);
+			await Task.Run(() => DbContext.Set<TEntity>().Add(entity));
 		}
 	}
 }

@@ -2,7 +2,6 @@
 using AsyncChat.Persistence;
 using AsyncChat.Presentation.Properties;
 using System;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace AsyncChat.Presentation.Views
@@ -18,7 +17,7 @@ namespace AsyncChat.Presentation.Views
 			userValidator = new UserValidator();
 		}
 
-		private void OnButtonLoginClick(object sender, EventArgs e)
+		private async void OnButtonLoginClick(object sender, EventArgs e)
 		{
 			if (!AreCredentialsEntered())
 			{
@@ -31,18 +30,11 @@ namespace AsyncChat.Presentation.Views
 				Password = txtPassword.Text
 			};
 
-			bool isUserValid = false;
-
-			var thread = new Thread(() =>
-			{
-				isUserValid = userValidator.IsValid(user);
-			});
-			thread.Start();
-			thread.Join();
+			var isUserValid = await userValidator.Validate(user);
 
 			if (!isUserValid)
 			{
-				MessageBox.Show(this, Resources.Warning_Title_IncorrectCredentials, Resources.Warning_IncorrectCredentials,
+				MessageBox.Show(this, Resources.Warning_IncorrectCredentials, Resources.Warning_Title_IncorrectCredentials,
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
@@ -55,13 +47,13 @@ namespace AsyncChat.Presentation.Views
 		{
 			if (string.IsNullOrEmpty(txtName.Text))
 			{
-				MessageBox.Show(this, Resources.Warning_Title_EmptyName, Resources.Warning_EmptyName,
+				MessageBox.Show(this, Resources.Warning_EmptyName, Resources.Warning_Title_EmptyName,
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return false;
 			}
 			if (string.IsNullOrEmpty(txtPassword.Text))
 			{
-				MessageBox.Show(this, Resources.Warning_Title_EmptyPassword, Resources.Warning_EmptyPassword,
+				MessageBox.Show(this, Resources.Warning_EmptyPassword, Resources.Warning_Title_EmptyPassword,
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return false;
 			}
