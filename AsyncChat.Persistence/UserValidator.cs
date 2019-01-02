@@ -28,13 +28,13 @@ namespace AsyncChat.Persistence
 					return false;
 				}
 
-				return ValidatePassword(user.Password, dbUser.Password);
+				return await ValidatePassword(user.Password, dbUser.Password);
 			}
 		}
 
-		private bool ValidatePassword(string localUserPassword, string dbUserPassword)
+		private async Task<bool> ValidatePassword(string localUserPassword, string dbUserPassword)
 		{
-			var encryptedLocalPassword = passwordEncrypter.EncryptPassword(localUserPassword);
+			var encryptedLocalPassword = await Task.Run(() => passwordEncrypter.EncryptPassword(localUserPassword));
 
 			if (encryptedLocalPassword != dbUserPassword)
 			{

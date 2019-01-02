@@ -49,7 +49,7 @@ namespace AsyncChat.Presentation.Views
 			using (var unitOfWork = new UnitOfWork())
 			{
 				await unitOfWork.UserRepository.AddAsync(user);
-				unitOfWork.Commit();
+				await unitOfWork.Commit();
 			}
 
 			MessageBox.Show(this, Resources.Information_AccountCreated, Resources.Information_Title_AccountCreated,

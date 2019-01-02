@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace AsyncChat.Persistence.Repository
 {
@@ -14,14 +15,14 @@ namespace AsyncChat.Persistence.Repository
 			UserRepository = new UserRepository(asyncChatContext);
 		}
 
-		public void Commit()
+		public async Task Commit()
 		{
-			asyncChatContext.SaveChanges();
+			await asyncChatContext.SaveChangesAsync();
 		}
 
-		public void Dispose()
+		public async void Dispose()
 		{
-			asyncChatContext?.Dispose();
+			await Task.Run(() => asyncChatContext?.Dispose());
 		}
 	}
 }
