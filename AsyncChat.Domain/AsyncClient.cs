@@ -51,11 +51,11 @@ namespace AsyncChat.Domain
 
 				state.TcpListener.BeginConnect(state.EndPoint, new AsyncCallback(ConnectCallback), null);
 
-				ConnectionIvokedMethod.Invoke(true);
+				ConnectionInvokedMethod.Invoke(true);
 			}
 			catch (Exception exception)
 			{
-				ConnectionIvokedMethod.Invoke(false);
+				ConnectionInvokedMethod.Invoke(false);
 				logger.Error(exception.Message, exception);
 				ExceptionThrownMethod.Invoke(exception.Message);
 			}
@@ -134,7 +134,7 @@ namespace AsyncChat.Domain
 		public delegate void ExceptionThrown(string exceptionMessage);
 		public ExceptionThrown ExceptionThrownMethod;
 
-		public delegate void ConnectionIvoked(bool connected);
-		public ConnectionIvoked ConnectionIvokedMethod;
+		public delegate void ConnectionInvoked(bool connected);
+		public ConnectionInvoked ConnectionInvokedMethod;
 	}
 }

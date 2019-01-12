@@ -34,7 +34,6 @@
 			this.txtPassword = new System.Windows.Forms.TextBox();
 			this.btnCreateAccount = new System.Windows.Forms.Button();
 			this.btnLogin = new System.Windows.Forms.Button();
-			this.registerView = new AsyncChat.Presentation.Views.RegisterView();
 			this.SuspendLayout();
 			// 
 			// lblName
@@ -96,19 +95,10 @@
 			this.btnLogin.UseVisualStyleBackColor = true;
 			this.btnLogin.Click += new System.EventHandler(this.OnButtonLoginClick);
 			// 
-			// registerView
-			// 
-			this.registerView.Location = new System.Drawing.Point(0, 0);
-			this.registerView.Name = "registerView";
-			this.registerView.Size = new System.Drawing.Size(300, 300);
-			this.registerView.TabIndex = 6;
-			this.registerView.Visible = false;
-			// 
 			// LoginView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.registerView);
 			this.Controls.Add(this.btnLogin);
 			this.Controls.Add(this.btnCreateAccount);
 			this.Controls.Add(this.txtPassword);
@@ -131,6 +121,5 @@
 		private System.Windows.Forms.TextBox txtPassword;
 		private System.Windows.Forms.Button btnCreateAccount;
 		private System.Windows.Forms.Button btnLogin;
-		private RegisterView registerView;
 	}
 }

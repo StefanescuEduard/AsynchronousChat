@@ -1,6 +1,8 @@
 ﻿using AsyncChat.Domain;
 using System;
+using System.Diagnostics;
 using System.ServiceProcess;
+using System.Threading;
 
 namespace AsyncChat.Service
 {
@@ -8,10 +10,11 @@ namespace AsyncChat.Service
 	{
 		private static ChatService chatService;
 		private static readonly object syncObject = new object();
+		private Thread serverThread;
 
 		public AsyncServer AsyncServer { get; private set; }
 
-		private ChatService()
+		public ChatService()
 		{
 			InitializeComponent();
 
@@ -35,11 +38,13 @@ namespace AsyncChat.Service
 		{
 			try
 			{
-				AsyncServer.StartListening();
+				Thread.Sleep(10000);
+				serverThread = new Thread(() => AsyncServer.StartListening());
+				serverThread.Start();
 			}
 			catch (Exception exception)
 			{
-				Console.WriteLine(exception.Message);
+				EventLog.WriteEntry("AsyncServerService", exception.ToString(), EventLogEntryType.Error);
 			}
 		}
 
@@ -47,11 +52,13 @@ namespace AsyncChat.Service
 		{
 			try
 			{
-				AsyncServer.StopListening();
+				serverThread.Abort();
+				serverThread = new Thread(() => AsyncServer.StopListening());
+				serverThread.Start();
 			}
 			catch (Exception exception)
 			{
-				Console.WriteLine(exception.Message);
+				EventLog.WriteEntry("AsyncServerService", exception.ToString(), EventLogEntryType.Error);
 			}
 		}
 

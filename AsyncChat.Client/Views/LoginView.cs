@@ -9,12 +9,16 @@ namespace AsyncChat.Presentation.Views
 	public partial class LoginView : UserControl
 	{
 		private readonly UserValidator userValidator;
+		private readonly RegisterView registerView;
 
 		public LoginView()
 		{
 			InitializeComponent();
-			registerView.RegisterFinishedMethod += HideRegisterView;
+
+			registerView = new RegisterView();
 			userValidator = new UserValidator();
+
+			registerView.RegisterFinishedMethod += HideRegisterView;
 		}
 
 		private async void OnButtonLoginClick(object sender, EventArgs e)
@@ -63,12 +67,14 @@ namespace AsyncChat.Presentation.Views
 
 		private void OnButtonRegisterClick(object sender, EventArgs e)
 		{
-			registerView.Visible = true;
+			Controls.Add(registerView);
+			registerView.BringToFront();
 		}
 
 		private void HideRegisterView()
 		{
-			registerView.Visible = false;
+			Controls.Remove(registerView);
+			registerView.SendToBack();
 		}
 
 		private void ResetInputControls()

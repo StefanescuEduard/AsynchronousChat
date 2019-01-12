@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 
 namespace AsyncChat.Domain
 {
@@ -38,15 +39,14 @@ namespace AsyncChat.Domain
 		{
 			try
 			{
+				Thread.Sleep(10000);
+
 				state.TcpListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
 				state.TcpListener.Bind(state.EndPoint);
 				state.TcpListener.Listen(50);
 
-				while (true)
-				{
-					state.TcpListener.BeginAccept(new AsyncCallback(AcceptCallback), null);
-				}
+				state.TcpListener.BeginAccept(new AsyncCallback(AcceptCallback), null);
 			}
 			catch (Exception exception)
 			{
@@ -89,6 +89,7 @@ namespace AsyncChat.Domain
 				ClientConnectedMethod?.Invoke();
 				clientSocket.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,
 					new AsyncCallback(ReceiveCallback), clientSocket);
+				state.TcpListener.BeginAccept(new AsyncCallback(AcceptCallback), null);
 			}
 			catch (Exception exception)
 			{

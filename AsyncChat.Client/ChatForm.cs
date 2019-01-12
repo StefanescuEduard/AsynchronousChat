@@ -25,10 +25,25 @@ namespace AsyncChat.Presentation
 			asyncClient = new AsyncClient();
 			asyncClient.ExceptionThrownMethod += HandleException;
 			asyncClient.ChatContentReceivedMethod += DisplayChatContent;
-			asyncClient.ConnectionIvokedMethod += HandleConnection;
+			asyncClient.ConnectionInvokedMethod += HandleConnection;
 		}
 
 		private void InitializeControls()
+		{
+			if (InvokeRequired)
+			{
+				Invoke((Action)delegate
+				{
+					SetControlsInDefaultState();
+				});
+			}
+			else
+			{
+				SetControlsInDefaultState();
+			}
+		}
+
+		private void SetControlsInDefaultState()
 		{
 			rTxtContent.BackColor = Color.White;
 			txtMessage.Text = string.Empty;
@@ -142,7 +157,10 @@ namespace AsyncChat.Presentation
 
 		private void HandleException(string exceptionMessage)
 		{
-			MessageBox.Show(this, exceptionMessage, "Something bad happened", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			Invoke((Action)delegate
+			{
+				MessageBox.Show(this, exceptionMessage, "Something bad happened", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			});
 			exceptionThrown = true;
 			InitializeControls();
 		}
