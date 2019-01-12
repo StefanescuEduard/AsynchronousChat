@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
-using System.Threading;
 
 namespace AsyncChat.Domain
 {
@@ -39,8 +38,6 @@ namespace AsyncChat.Domain
 		{
 			try
 			{
-				Thread.Sleep(10000);
-
 				state.TcpListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
 				state.TcpListener.Bind(state.EndPoint);

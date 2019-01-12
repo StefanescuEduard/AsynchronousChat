@@ -38,7 +38,6 @@ namespace AsyncChat.Service
 		{
 			try
 			{
-				Thread.Sleep(10000);
 				serverThread = new Thread(() => AsyncServer.StartListening());
 				serverThread.Start();
 			}
