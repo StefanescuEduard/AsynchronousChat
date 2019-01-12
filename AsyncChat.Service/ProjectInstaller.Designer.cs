@@ -40,7 +40,7 @@
 			// asyncChatServiceInstaller
 			// 
 			this.asyncChatServiceInstaller.Description = "Open an internal server that manage a chat server";
-			this.asyncChatServiceInstaller.ServiceName = "TestService12";
+			this.asyncChatServiceInstaller.ServiceName = "AsyncChatServer Service";
 			// 
 			// ProjectInstaller
 			// 
