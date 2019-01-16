@@ -43,9 +43,7 @@ namespace AsyncChat.Presentation
 			this.btnConnect = new System.Windows.Forms.Button();
 			this.btnDisconnect = new System.Windows.Forms.Button();
 			this.panBackground = new System.Windows.Forms.Panel();
-			this.loginView = new AsyncChat.Presentation.Views.LoginView();
 			((System.ComponentModel.ISupportInitialize)(this.picBoxStatus)).BeginInit();
-			this.panBackground.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// rTxtContent
@@ -126,16 +124,16 @@ namespace AsyncChat.Presentation
 			// txtIP
 			// 
 			this.txtIP.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.txtIP.Location = new System.Drawing.Point(70, 34);
+			this.txtIP.Location = new System.Drawing.Point(70, 33);
 			this.txtIP.Name = "txtIP";
-			this.txtIP.Size = new System.Drawing.Size(148, 26);
+			this.txtIP.Size = new System.Drawing.Size(240, 26);
 			this.txtIP.TabIndex = 13;
 			// 
 			// lblServer
 			// 
 			this.lblServer.AutoSize = true;
 			this.lblServer.Font = new System.Drawing.Font("Roboto", 11.25F);
-			this.lblServer.Location = new System.Drawing.Point(9, 38);
+			this.lblServer.Location = new System.Drawing.Point(9, 37);
 			this.lblServer.Name = "lblServer";
 			this.lblServer.Size = new System.Drawing.Size(54, 18);
 			this.lblServer.TabIndex = 12;
@@ -165,21 +163,11 @@ namespace AsyncChat.Presentation
 			// 
 			// panBackground
 			// 
-			this.panBackground.Controls.Add(this.loginView);
 			this.panBackground.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panBackground.Location = new System.Drawing.Point(0, 0);
 			this.panBackground.Name = "panBackground";
 			this.panBackground.Size = new System.Drawing.Size(604, 292);
 			this.panBackground.TabIndex = 17;
-			// 
-			// loginView
-			// 
-			this.loginView.Location = new System.Drawing.Point(158, 3);
-			this.loginView.Margin = new System.Windows.Forms.Padding(50, 3, 15, 3);
-			this.loginView.Name = "loginView";
-			this.loginView.Size = new System.Drawing.Size(298, 298);
-			this.loginView.TabIndex = 0;
-			this.loginView.Visible = false;
 			// 
 			// ChatForm
 			// 
@@ -205,7 +193,6 @@ namespace AsyncChat.Presentation
 			this.Name = "ChatForm";
 			this.Text = "Chattie";
 			((System.ComponentModel.ISupportInitialize)(this.picBoxStatus)).EndInit();
-			this.panBackground.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -224,7 +211,6 @@ namespace AsyncChat.Presentation
 		private System.Windows.Forms.Button btnConnect;
 		private System.Windows.Forms.Button btnDisconnect;
 		private System.Windows.Forms.Panel panBackground;
-		private LoginView loginView;
 	}
 }
 

@@ -11,5 +11,11 @@ namespace AsyncChat.Persistence
 		{
 
 		}
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<User>().Property(user => user.Name).HasColumnType("VARCHAR");
+			modelBuilder.Entity<User>().HasIndex(user => user.Name).IsUnique(true);
+		}
 	}
 }

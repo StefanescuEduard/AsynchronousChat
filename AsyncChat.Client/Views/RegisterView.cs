@@ -3,6 +3,8 @@ using AsyncChat.Domain.Entities;
 using AsyncChat.Persistence.Repository;
 using AsyncChat.Presentation.Properties;
 using System;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -39,21 +41,50 @@ namespace AsyncChat.Presentation.Views
 
 		private async Task SaveUserAsync()
 		{
-			var user = new User
+			try
 			{
-				Name = txtName.Text,
-				Email = txtEmail.Text,
-				Password = passwordEncrypter.EncryptPassword(txtPassword.Text)
-			};
+				var user = new User
+				{
+					Name = txtName.Text,
+					Email = txtEmail.Text,
+					Password = passwordEncrypter.EncryptPassword(txtPassword.Text)
+				};
 
-			using (var unitOfWork = new UnitOfWork())
+				using (var unitOfWork = new UnitOfWork())
+				{
+					await unitOfWork.UserRepository.AddAsync(user);
+					await unitOfWork.Commit();
+				}
+
+				MessageBox.Show(this, Resources.Information_AccountCreated, Resources.Information_Title_AccountCreated,
+					MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			catch (Exception exception)
 			{
-				await unitOfWork.UserRepository.AddAsync(user);
-				await unitOfWork.Commit();
+				if (exception is SqlException || exception is DbUpdateException)
+				{
+					HandleDbException(exception);
+				}
+				else
+				{
+					MessageBox.Show(this, Resources.Error_AccountCannotBeCreated, Resources.Error_Title_AccountCannotBeCreated,
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+		}
+
+		private void HandleDbException(Exception exception)
+		{
+			var innerExceptionMessage = string.Empty;
+
+			while (exception.InnerException != null)
+			{
+				innerExceptionMessage = exception.InnerException.Message;
+				exception = exception.InnerException;
 			}
 
-			MessageBox.Show(this, Resources.Information_AccountCreated, Resources.Information_Title_AccountCreated,
-				MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(this, innerExceptionMessage, Resources.Error_Title_AccountCannotBeCreated,
+				MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 		private bool AreAllFieldsEntered()

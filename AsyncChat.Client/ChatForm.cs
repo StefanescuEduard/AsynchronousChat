@@ -1,5 +1,6 @@
 ﻿using AsyncChat.Domain;
 using AsyncChat.Presentation.Properties;
+using AsyncChat.Presentation.Views;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -9,6 +10,7 @@ namespace AsyncChat.Presentation
 {
 	public partial class ChatForm : Form
 	{
+		private readonly LoginView loginView;
 		private AsyncClient asyncClient;
 		private bool exceptionThrown = false;
 		private string userName;
@@ -17,6 +19,10 @@ namespace AsyncChat.Presentation
 		{
 			InitializeComponent();
 
+			loginView = new LoginView
+			{
+				Location = new Point(panBackground.Size.Width / 4, 0)
+			};
 			loginView.UserLogedMethod += HideLoginView;
 
 			InitializeControls();
@@ -82,7 +88,7 @@ namespace AsyncChat.Presentation
 
 		private void OnLogoutButtonClick(object sender, EventArgs e)
 		{
-			loginView.Visible = true;
+			panBackground.Controls.Add(loginView);
 			panBackground.Visible = true;
 			ResetInputControls();
 		}
@@ -138,7 +144,7 @@ namespace AsyncChat.Presentation
 		{
 			panBackground.BringToFront();
 			panBackground.BackColor = Color.FromArgb(5, 210, 218, 226);
-			loginView.Visible = true;
+			panBackground.Controls.Add(loginView);
 		}
 
 		private void OnChatContentBoxKeyDown(object sender, KeyEventArgs e)
@@ -183,8 +189,8 @@ namespace AsyncChat.Presentation
 
 		private void HideLoginView(string userName)
 		{
-			loginView.Visible = false;
 			panBackground.Visible = false;
+			panBackground.Controls.Remove(loginView);
 			this.userName = userName;
 			rTxtContent.AppendText($"{userName} logged successfully.\r\n");
 		}

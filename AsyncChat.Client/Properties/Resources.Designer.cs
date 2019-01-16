@@ -61,6 +61,24 @@ namespace AsyncChat.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account cannot be created, please try again..
+        /// </summary>
+        internal static string Error_AccountCannotBeCreated {
+            get {
+                return ResourceManager.GetString("Error_AccountCannotBeCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account cannot be created.
+        /// </summary>
+        internal static string Error_Title_AccountCannotBeCreated {
+            get {
+                return ResourceManager.GetString("Error_Title_AccountCannotBeCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The account was created successfully..
         /// </summary>
         internal static string Information_AccountCreated {

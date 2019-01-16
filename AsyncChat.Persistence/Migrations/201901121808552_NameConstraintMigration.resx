@@ -117,53 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Warning_EmptyName" xml:space="preserve">
-    <value>You need to enter your name.</value>
+  <data name="Target" xml:space="preserve">
+    <value>H4sIAAAAAAAEAM1XzW7jNhC+F+g7EDy1QFZ0ksvWkHfh2klhdJ0Yq+zeaWlsE6UoLUmldos+WQ99pL5Ch/q3ZMd2sC2KAIFFzXzzzT/1959/+e+3sSTPoI1I1IheewNKQIVJJNR6RDO7evOWvn/37Tf+XRRvyedK7tbJoaYyI7qxNh0yZsINxNx4sQh1YpKV9cIkZjxK2M1g8AO7vmaAEBSxCPE/ZsqKGPIHfJwkKoTUZlzOkwikKc/xTZCjkgceg0l5CCM6NjsVTjbcegvHxlikC5SMpeBIJgC5ooQrlVhukerwk4HA6kStgxQPuHzapYByKy4NlC4MG/FzvRncOG9Yo1hBhZmxSXwh4PVtGR7WVX9VkGkdPgzgHQba7pzXeRBHFAOiKekaGk6kdkLt+E5RQCgvRxBgPKd5Rbrvr+qqwOJxf1dkkkmbaRgpyKzm8oossqUU4c+we0p+ATVSmZRtkkgT3+0d4NFCJylou/sIq5L6LKKE7euxrmKt1tIpHJspe3tDyQMa50sJdQ20ghDYRMNPoEBzC9GCWwtaOQzIo9iz3rHl/lfWsOiwhSiZ8+0HUGu7GVH8Scm92EJUnZQMPimBHYdKVmdwysgdBl3+61YW3JhfEx19ZUM+a+qxX6U4BixWFOiSRF1q7gVs7YGyxZosK9eU9vbdKoADsK3qN5Q0LIqR4RVdcYhqTaoZSqyYStX0YkfGlz/naYpRa42z8oQExSybvAku7/C4wGChOdDoNdvaEpY0X0PnLZpGpvdCGzvlli+5y9skintivRQcCW9lrh3lbkM3Qa+k3e9OqttTvchKB6aJ4j06FmNn5j5CTaUccT21fJtwyfWBCTFJZBarY1PmJe2i59v6xcn5CGVDtyHKo/MxmnZtwzSnfSSfdaLYzRbrpaszebu5f6l3uiK19bqHOr3il3V7+j7QK+RChBIM0bOIXBEHO6yn2HMCXvBFTqRAfxuBOVdiBcYWy4niPr7xxr/hAuvcKv4/G54ZE8kz1vx/vmOFi+vJLdpbweev1Weuww0/dIGZqQi2I/o7mRlcQF8yGJIn3Afkj72l9XYwGLQJXLxxVcngu5hvv78UqbtVLwC7bHP2p/vptXh0KxYNNaLRMkHiBcFyj75yYfab22ftTwJ/CkasGwj3gaAgdHluQCuZmVolVZzRozajSqSThjlYHmFgxtqKFQ8tvg7BmPyC85nLLM/5EqKZesxsmtmxMRAv5d79z2cv289vBfuc/cfUPZmv4QLSFOgCPKofMyGjmvd9v6GOQbgaKbsUWeEFD+HWuxrpIVFnApXhm0IKyvX4E8SpRDDzqAL+DK/hhuX1AdY83FUz+jjI6UTsh92fCr7WPDYlRqPvPnOZ+8599w8vBKhyGQ8AAA==</value>
   </data>
-  <data name="Warning_EmptyPassword" xml:space="preserve">
-    <value>You need to enter your password.</value>
-  </data>
-  <data name="Warning_Title_EmptyIpAddress" xml:space="preserve">
-    <value>Empty IP server address</value>
-  </data>
-  <data name="Information_Title_AccountCreated" xml:space="preserve">
-    <value>Account created</value>
-  </data>
-  <data name="Warning_EmptyIpAddress" xml:space="preserve">
-    <value>You need to enter a server address.</value>
-  </data>
-  <data name="Warning_Title_IncorrectCredentials" xml:space="preserve">
-    <value>Incorrect credentials</value>
-  </data>
-  <data name="Information_AccountCreated" xml:space="preserve">
-    <value>The account was created successfully.</value>
-  </data>
-  <data name="Warning_Title_EmptyName" xml:space="preserve">
-    <value>Empty name</value>
-  </data>
-  <data name="Warning_EmptyEmail" xml:space="preserve">
-    <value>You need to enter an email.</value>
-  </data>
-  <data name="Warning_IncorrectCredentials" xml:space="preserve">
-    <value>You entered a wrong name or password.</value>
-  </data>
-  <data name="Warning_Title_EmptyEmail" xml:space="preserve">
-    <value>Empty email</value>
-  </data>
-  <data name="Warning_Title_EmptyPassword" xml:space="preserve">
-    <value>Empty password</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="PowerCordGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\PowerCordGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PowerCordRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\PowerCordRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Error_Title_AccountCannotBeCreated" xml:space="preserve">
-    <value>Account cannot be created</value>
-  </data>
-  <data name="Error_AccountCannotBeCreated" xml:space="preserve">
-    <value>Account cannot be created, please try again.</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>
