@@ -14,12 +14,16 @@ namespace AsyncChat.Domain
 		private State state;
 		private IPAddress ipAddress;
 		private readonly ILog logger;
+		private readonly MessageCryptor messageCryptor;
+
+		private const int Port = 23571;
 
 		public string ChatContent { get; private set; }
 
 		public AsyncClient()
 		{
 			logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+			messageCryptor = new MessageCryptor();
 		}
 
 		public void SetConnectionForClient(string clientAddress)
@@ -28,12 +32,21 @@ namespace AsyncChat.Domain
 			{
 				state = new State
 				{
-					Port = 23571,
-					BufferSize = 256
+					BufferSize = 1024
 				};
-				ipAddress = ipAddress = Dns.GetHostEntry(clientAddress).AddressList
-												.First(address => address.AddressFamily == AddressFamily.InterNetwork);
-				state.EndPoint = new IPEndPoint(ipAddress, state.Port);
+
+				if (clientAddress == "localhost")
+				{
+					ipAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList
+													.First(address => address.AddressFamily == AddressFamily.InterNetwork);
+				}
+				else
+				{
+					ipAddress = Dns.GetHostEntry(clientAddress).AddressList
+													.First(address => address.AddressFamily == AddressFamily.InterNetwork);
+				}
+
+				state.EndPoint = new IPEndPoint(ipAddress, Port);
 				state.Buffer = new byte[state.BufferSize];
 			}
 			catch (Exception exception)
@@ -65,7 +78,7 @@ namespace AsyncChat.Domain
 		{
 			try
 			{
-				var bytesToSend = Encoding.ASCII.GetBytes(message);
+				var bytesToSend = messageCryptor.EncryptMessage(message);
 
 				state.TcpListener.BeginSend(bytesToSend, 0, bytesToSend.Length, SocketFlags.None,
 					new AsyncCallback(SendCallback), null);
@@ -114,7 +127,7 @@ namespace AsyncChat.Domain
 
 				if (bytesToRead > 0)
 				{
-					ChatContent = Encoding.ASCII.GetString(state.Buffer, 0, bytesToRead);
+					ChatContent = Encoding.Unicode.GetString(state.Buffer, 0, bytesToRead);
 					ChatContentReceivedMethod.Invoke();
 
 					state.TcpListener.BeginReceive(state.Buffer, 0, state.BufferSize, SocketFlags.None,

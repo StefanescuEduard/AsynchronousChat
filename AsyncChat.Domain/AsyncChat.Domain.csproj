@@ -76,10 +76,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TBB.Rijndael256.Core, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TBB.Rijndael256.Core.0.0.0.1\lib\netstandard2.0\TBB.Rijndael256.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncClient.cs" />
     <Compile Include="AsyncServer.cs" />
+    <Compile Include="MessageCrypter.cs" />
     <Compile Include="PasswordCrypter.cs" />
     <Compile Include="Entities\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

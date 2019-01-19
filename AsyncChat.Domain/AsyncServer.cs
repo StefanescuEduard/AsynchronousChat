@@ -15,6 +15,9 @@ namespace AsyncChat.Domain
 		private IPAddress ipAddress;
 		private readonly List<Socket> clients;
 		private readonly ILog logger;
+		private readonly MessageCryptor messageCryptor;
+
+		private const int Port = 23571;
 
 		public AsyncServer()
 		{
@@ -22,16 +25,16 @@ namespace AsyncChat.Domain
 			clients = new List<Socket>();
 			state = new State
 			{
-				Port = 23571,
 				BufferSize = 1024
 			};
 			state.Buffer = new byte[state.BufferSize];
+			messageCryptor = new MessageCryptor();
 		}
 
 		public void SetConnectionToHost(IPAddress ipAddress)
 		{
 			this.ipAddress = ipAddress;
-			state.EndPoint = new IPEndPoint(ipAddress, state.Port);
+			state.EndPoint = new IPEndPoint(ipAddress, Port);
 		}
 
 		public void StartListening()
@@ -104,7 +107,7 @@ namespace AsyncChat.Domain
 
 				if (bytesToRead > 0)
 				{
-					var content = Encoding.ASCII.GetString(state.Buffer, 0, bytesToRead);
+					var content = Encoding.Unicode.GetString(state.Buffer, 0, bytesToRead);
 
 					if (content == "disconnect")
 					{
@@ -159,9 +162,9 @@ namespace AsyncChat.Domain
 		{
 			try
 			{
-				var bytesToSend = Encoding.ASCII.GetBytes(content);
+				var bytesToSendDecrypter = messageCryptor.DecryptMessage(Encoding.Unicode.GetBytes(content));
 
-				client.BeginSend(bytesToSend, 0, bytesToSend.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
+				client.BeginSend(bytesToSendDecrypter, 0, bytesToSendDecrypter.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
 			}
 			catch (Exception exception)
 			{

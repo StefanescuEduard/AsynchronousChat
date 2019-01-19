@@ -19,14 +19,7 @@ namespace AsyncChat.Service
 
 			if (args[0] == "--console" || args[0] == "-c")
 			{
-				if (string.IsNullOrEmpty(args[1]))
-				{
-					Console.Write("You need to provide an IP address: ");
-					args[1] = Console.ReadLine();
-					Main(args);
-				}
-
-				chatServer.AsyncServer.SetConnectionToHost(Dns.GetHostEntry(args[1])
+				chatServer.AsyncServer.SetConnectionToHost(Dns.GetHostEntry(Dns.GetHostName())
 						.AddressList.First(address => address.AddressFamily == AddressFamily.InterNetwork));
 				chatServer.RunAsConsole(args);
 			}
