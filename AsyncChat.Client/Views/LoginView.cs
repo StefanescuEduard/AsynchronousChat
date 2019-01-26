@@ -83,6 +83,22 @@ namespace AsyncChat.Presentation.Views
 			txtPassword.Text = string.Empty;
 		}
 
+		private void OnTxtPasswordKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				OnButtonLoginClick(sender, e);
+			}
+		}
+
+		private void OnTxtNameKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				OnButtonLoginClick(sender, e);
+			}
+		}
+
 		public delegate void UserLoged(string userName);
 		public UserLoged UserLogedMethod;
 	}

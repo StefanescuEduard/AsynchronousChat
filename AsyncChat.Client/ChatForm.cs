@@ -1,6 +1,8 @@
 ﻿using AsyncChat.Domain;
 using AsyncChat.Presentation.Properties;
 using AsyncChat.Presentation.Views;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AsyncChat.Presentation
 {
-	public partial class ChatForm : Form
+	public partial class ChatForm : MaterialForm
 	{
 		private readonly LoginView loginView;
 		private AsyncClient asyncClient;
@@ -18,6 +20,10 @@ namespace AsyncChat.Presentation
 		public ChatForm()
 		{
 			InitializeComponent();
+
+			var materialSkinManager = MaterialSkinManager.Instance;
+			materialSkinManager.AddFormToManage(this);
+			materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
 
 			loginView = new LoginView
 			{
@@ -89,6 +95,7 @@ namespace AsyncChat.Presentation
 		private void OnLogoutButtonClick(object sender, EventArgs e)
 		{
 			panBackground.Controls.Add(loginView);
+			panBackground.BringToFront();
 			panBackground.Visible = true;
 			ResetInputControls();
 		}

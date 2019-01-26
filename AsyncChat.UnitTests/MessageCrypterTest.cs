@@ -14,8 +14,8 @@ namespace AsyncChat.UnitTests
 			var messageCrypterSecondInstance = new MessageCryptor();
 			const string message = "SomeMessage";
 
-			var encryptedMessage = messageCrypterFirstInstance.EncryptMessage(message);
-			var decryptedMessage = Encoding.Unicode.GetString(messageCrypterSecondInstance.DecryptMessage(encryptedMessage));
+			var encryptedMessage = messageCrypterFirstInstance.EncryptMessage(Encoding.Unicode.GetBytes(message));
+			var decryptedMessage = messageCrypterSecondInstance.DecryptMessage(encryptedMessage);
 
 			Assert.AreEqual(message, decryptedMessage);
 		}

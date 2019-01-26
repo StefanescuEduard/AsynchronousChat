@@ -162,9 +162,10 @@ namespace AsyncChat.Domain
 		{
 			try
 			{
-				var bytesToSendDecrypter = messageCryptor.DecryptMessage(Encoding.Unicode.GetBytes(content));
+				var bytesContent = Encoding.Unicode.GetBytes(content);
+				//var bytesToSendDecrypter = Encoding.Unicode.GetBytes(messageCryptor.DecryptMessage(bytesContent));
 
-				client.BeginSend(bytesToSendDecrypter, 0, bytesToSendDecrypter.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
+				client.BeginSend(bytesContent, 0, bytesContent.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
 			}
 			catch (Exception exception)
 			{

@@ -78,7 +78,8 @@ namespace AsyncChat.Domain
 		{
 			try
 			{
-				var bytesToSend = messageCryptor.EncryptMessage(message);
+				//var bytesToSend = messageCryptor.EncryptMessage(Encoding.Unicode.GetBytes(message));
+				var bytesToSend = Encoding.Unicode.GetBytes(message);
 
 				state.TcpListener.BeginSend(bytesToSend, 0, bytesToSend.Length, SocketFlags.None,
 					new AsyncCallback(SendCallback), null);
