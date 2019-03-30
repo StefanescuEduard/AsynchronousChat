@@ -1,10 +1,10 @@
 ﻿using AsyncChat.Domain.Entities;
 using AsyncChat.Persistence;
-using AsyncChat.Presentation.Properties;
+using AsyncChat.WindowsForms.Properties;
 using System;
 using System.Windows.Forms;
 
-namespace AsyncChat.Presentation.Views
+namespace AsyncChat.WindowsForms.Views
 {
 	public partial class LoginView : UserControl
 	{

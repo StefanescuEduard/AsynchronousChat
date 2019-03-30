@@ -5,13 +5,17 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncChat.Service", "AsyncChat.Service\AsyncChat.Service.csproj", "{DD16F3C6-11CB-439E-BA4C-B97C50B07272}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncChat.Presentation", "AsyncChat.Client\AsyncChat.Presentation.csproj", "{DF9D59BB-11C6-4446-A2B2-4F04BD9A630D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncChat.WindowsForms", "AsyncChat.Client\AsyncChat.WindowsForms.csproj", "{DF9D59BB-11C6-4446-A2B2-4F04BD9A630D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncChat.Domain", "AsyncChat.Domain\AsyncChat.Domain.csproj", "{D9FF64BB-C019-42B8-A9DE-E30727728024}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncChat.Persistence", "AsyncChat.Persistence\AsyncChat.Persistence.csproj", "{08B5FAFF-130F-40DA-BB10-736EAA167033}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncChat.UnitTests", "AsyncChat.UnitTests\AsyncChat.UnitTests.csproj", "{A9B4E891-1F96-4615-9D18-81DA15DFFAD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AsyncChat.Presentation", "AsyncChat.Presentation", "{0015E922-5411-495C-98B8-7F3B90851C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncChat.WPF", "AsyncChat.WPF\AsyncChat.WPF.csproj", "{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,9 +65,21 @@ Global
 		{A9B4E891-1F96-4615-9D18-81DA15DFFAD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A9B4E891-1F96-4615-9D18-81DA15DFFAD2}.Release|x64.ActiveCfg = Release|Any CPU
 		{A9B4E891-1F96-4615-9D18-81DA15DFFAD2}.Release|x64.Build.0 = Release|Any CPU
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}.Debug|x64.Build.0 = Debug|Any CPU
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}.Release|x64.ActiveCfg = Release|Any CPU
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF9D59BB-11C6-4446-A2B2-4F04BD9A630D} = {0015E922-5411-495C-98B8-7F3B90851C5D}
+		{B9C62AE9-5957-4DFC-985A-0F773BD5AB2D} = {0015E922-5411-495C-98B8-7F3B90851C5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C89A0884-8332-45E1-BFE4-F837A47CC7E0}

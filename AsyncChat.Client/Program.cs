@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AsyncChat.Presentation
+namespace AsyncChat.WindowsForms
 {
 	static class Program
 	{

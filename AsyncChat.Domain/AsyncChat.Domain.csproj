@@ -80,9 +80,8 @@
   <ItemGroup>
     <Compile Include="AsyncClient.cs" />
     <Compile Include="AsyncServer.cs" />
-    <Compile Include="MessageCrypter.cs" />
-    <Compile Include="PasswordCrypter.cs" />
     <Compile Include="Entities\State.cs" />
+    <Compile Include="PasswordCrypter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>

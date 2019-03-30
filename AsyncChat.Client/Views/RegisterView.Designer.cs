@@ -1,4 +1,4 @@
-﻿namespace AsyncChat.Presentation.Views
+﻿namespace AsyncChat.WindowsForms.Views
 {
 	partial class RegisterView
 	{
@@ -103,7 +103,7 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = global::AsyncChat.Presentation.Properties.Resources.PersonAdd;
+			this.pictureBox1.Image = global::AsyncChat.WindowsForms.Properties.Resources.PersonAdd;
 			this.pictureBox1.Location = new System.Drawing.Point(110, 1);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(64, 64);

@@ -1,14 +1,14 @@
 ﻿using AsyncChat.Domain;
 using AsyncChat.Domain.Entities;
 using AsyncChat.Persistence.Repository;
-using AsyncChat.Presentation.Properties;
+using AsyncChat.WindowsForms.Properties;
 using System;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AsyncChat.Presentation.Views
+namespace AsyncChat.WindowsForms.Views
 {
 	public partial class RegisterView : UserControl
 	{

@@ -1,4 +1,4 @@
-﻿namespace AsyncChat.Presentation.Views
+﻿namespace AsyncChat.WindowsForms.Views
 {
 	partial class LoginView
 	{

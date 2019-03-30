@@ -1,6 +1,6 @@
-﻿using AsyncChat.Presentation.Views;
+﻿using AsyncChat.WindowsForms.Views;
 
-namespace AsyncChat.Presentation
+namespace AsyncChat.WindowsForms
 {
 	partial class ChatForm
 	{
